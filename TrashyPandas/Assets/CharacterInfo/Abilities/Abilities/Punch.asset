@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf35324003a63f419b0639016581163, type: 3}
+  m_Name: Punch
+  m_EditorClassIdentifier: 
+  name: Punch
+  icon: {fileID: 21300076, guid: 54fe0488b7d441741b6a000a9b54db3c, type: 3}
+  animationTrigger: Punch
+  description: Punch you opponent!
+  basePower: 3
+  effects:
+  - {fileID: 11400000, guid: cda5eb0104f6705419ee4cc40a532269, type: 2}
+  behaviour: {fileID: 11400000, guid: a05f31f2fb7ea8e4dbc39f6e1111c0f9, type: 2}
+  ParticleEffect: {fileID: 0}
+  caster: {fileID: 0}

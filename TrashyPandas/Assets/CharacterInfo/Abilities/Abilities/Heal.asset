@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf35324003a63f419b0639016581163, type: 3}
+  m_Name: Heal
+  m_EditorClassIdentifier: 
+  name: Heal
+  icon: {fileID: 21300054, guid: 54fe0488b7d441741b6a000a9b54db3c, type: 3}
+  animationTrigger: Punch
+  description: Heals an ally
+  basePower: 2
+  effects:
+  - {fileID: 11400000, guid: c1ea86c0ecaf6eb45a1033e3d499d939, type: 2}
+  behaviour: {fileID: 11400000, guid: 3b22ba2d7dc20694ca0d8e30a5dca9b7, type: 2}
+  ParticleEffect: {fileID: 0}
+  caster: {fileID: 0}

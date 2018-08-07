@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf35324003a63f419b0639016581163, type: 3}
+  m_Name: Deep Wounds
+  m_EditorClassIdentifier: 
+  name: Deep Wounds
+  icon: {fileID: 21300012, guid: e994282620304fd4fb7c6ed66e211a2f, type: 3}
+  animationTrigger: Punch
+  description: Stab at your foes weak points, making them bleed
+  basePower: 1
+  effects:
+  - {fileID: 11400000, guid: cda5eb0104f6705419ee4cc40a532269, type: 2}
+  - {fileID: 11400000, guid: 17cbdf48ea26efd4880c1d4af17688f5, type: 2}
+  behaviour: {fileID: 11400000, guid: a05f31f2fb7ea8e4dbc39f6e1111c0f9, type: 2}
+  ParticleEffect: {fileID: 0}
+  caster: {fileID: 0}
