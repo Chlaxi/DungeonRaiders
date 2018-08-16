@@ -18,16 +18,11 @@ TagManager:
   - 
   - Level
   - Enemy
-  - Usable
+  - 
   - Interactable
   - IgnorePlayer
   - Player
-  - Cameras
-  - LitSprites
-  - Destructable
-  - EnemyWeapon
-  - BossWeakPoint
-  - Bullet
+  - CombatSlot
   - 
   - 
   - 
@@ -38,8 +33,13 @@ TagManager:
   - 
   - 
   - 
-  - PlayerDrop
-  - Platform
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Background
     uniqueID: 2344118779
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 3405993979
+    locked: 0
+  - name: CombatLayer
+    uniqueID: 795247709
     locked: 0
   - name: InfoPanel
     uniqueID: 550532221

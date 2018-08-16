@@ -88,7 +88,7 @@ public class CombatUIController : MonoBehaviour {
         playerBaB.text = unit.stats.baseAttackBonus.ToString();
     }
 
-
+    //TODO if not in combat, and the target is player, set them as active in left panel
     public void UpdateRightPanel(ICharacter unit)
     {
         if (unit == null) return;

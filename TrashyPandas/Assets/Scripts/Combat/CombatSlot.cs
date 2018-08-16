@@ -9,8 +9,19 @@ public class CombatSlot : MonoBehaviour {
     public CombatSlotPosition CBPosition;
     public ICharacter unit;
     public bool isActive;
-
+    private BoxCollider2D collider;
     public bool isInRange = false;
+
+    private void Awake()
+    {
+        collider = GetComponent<BoxCollider2D>();
+        Deactivate();
+    }
+
+    private void Start()
+    {
+        CombatManager.instance.combatEndedDelegate += CheckSurvival;
+    }
 
     /// <summary>
     /// Setups the combat slot. Should only be called when combat is started.
@@ -18,9 +29,12 @@ public class CombatSlot : MonoBehaviour {
     /// <param name="unit"></param>
     public void Setup(ICharacter unit)
     {
+        if (unit == null) return;
+
+        Activate();
+
         this.unit = unit;
         unit.unitDied += ClearDeadUnit;
-        isActive = true;
         SpawnUnit();
     }
 
@@ -30,6 +44,7 @@ public class CombatSlot : MonoBehaviour {
 
     }
 
+    //TODO Assign units
     /// <summary>
     /// Assigns a new unit to the combat Slot. A unitcan only be assigned, if the slot is active
     /// </summary>
@@ -38,9 +53,11 @@ public class CombatSlot : MonoBehaviour {
     {
         if (!isActive) return;
         this.unit = unit;
-        
+    }
 
-
+    public void RemoveUnit()
+    {
+        this.unit = null;
     }
 
     public void ClearDeadUnit(ICharacter corpse)
@@ -69,7 +86,7 @@ public class CombatSlot : MonoBehaviour {
 
     public void OnClick()
     {
-        if (!isActive) return;
+        if (!isActive || unit == null) return;
 
 
         PlayerController.instance.CurrentTarget = unit;
@@ -91,6 +108,25 @@ public class CombatSlot : MonoBehaviour {
     {
         if (unit == null) GetComponentInChildren<ICharacter>();
         return unit;
+    }
+
+
+    public void Activate()
+    {
+        collider.enabled = true;
+        IsActive = true;
+    }
+
+    public void Deactivate()
+    {
+        collider.enabled = false;
+        IsActive = false;
+    }
+
+    private void CheckSurvival()
+    {
+        if (unit == null)
+            Deactivate();
     }
 
 }

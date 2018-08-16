@@ -17,6 +17,12 @@ public class CombatManager : MonoBehaviour {
 
     public static bool InCombat;
 
+    public delegate void CombatStarted();
+    public CombatStarted combatStartedDelegate;
+    public delegate void CombatEnded();
+    public CombatStarted combatEndedDelegate;
+
+
     public CombatSlot[] playerPool = new CombatSlot[4];
     public CombatSlot[] enemyPool = new CombatSlot[4];
 
@@ -48,9 +54,9 @@ public class CombatManager : MonoBehaviour {
     public void StartCombat()
     {
         if (InCombat) return;
-            //EndCombat();
+            
 
-
+        
         foreach (ICharacter corpse in graveyard.GetComponentsInChildren<ICharacter>())
         {
             Destroy(corpse.gameObject);
@@ -70,6 +76,8 @@ public class CombatManager : MonoBehaviour {
         playerCount = PlayerUnits.Count;
         enemyCount = EnemyUnits.Count;
 
+        combatStartedDelegate();
+
         StartCoroutine(CombatSpawner());
     }
 
@@ -77,9 +85,10 @@ public class CombatManager : MonoBehaviour {
     {
         CombatUIController.instance.prepareForBattleScreen.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(1);
-        CombatUIController.instance.prepareForBattleScreen.GetComponent<Animator>().SetTrigger("FadeOut");
+
         PrepareUnitsForBattle();
         CalculateInitiative();
+        CombatUIController.instance.prepareForBattleScreen.GetComponent<Animator>().SetTrigger("FadeOut");
         StartRound();
     }
 
@@ -330,10 +339,12 @@ public class CombatManager : MonoBehaviour {
             del.transform.SetParent(graveyard);
             
         }
+        
 
         PlayerUnits.Clear();
         EnemyUnits.Clear();
 
+        combatEndedDelegate();
         //End combat!!
     }
 

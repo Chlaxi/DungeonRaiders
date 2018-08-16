@@ -138,18 +138,14 @@ public class CombatAI : MonoBehaviour {
             //TODO Get rid of switch, by using plugable AI, where the AI behaviour is inside the ScriptableObject
             switch (personality)
             {
-//The assassin will attempt to kill the enemy with the lowest health
                 case AIPersonality.Assassin:
                     if(targetPool[i].unit != null)
                     {
                         if (targetPool[i].unit.isDead) continue;
 
- //                       Debug.Log("The assassin analyses the opponents");   
                         if(targetPool[i].unit.stats.CurrentHealth < target.stats.CurrentHealth)
                         {
- //                           Debug.Log("The assassin checks whether" + targetPool[i].unit.name + " has lower health than " + target.name);
                             target = targetPool[i].unit;
-  //                          Debug.Log("Target changed to " + target.name);
                         }
                                 
                     }

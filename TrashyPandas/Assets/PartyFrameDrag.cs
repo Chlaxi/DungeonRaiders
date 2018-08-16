@@ -23,7 +23,6 @@ public class PartyFrameDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         if (partyFrame.unit == null)
         {
-            Debug.Log("No unit! Don't drag!");
             isDragging = false;
             return;
         }
@@ -36,10 +35,8 @@ public class PartyFrameDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         if (!isDragging) return;
 
-        Debug.Log("Dragging");
         Vector3 screenPoint = Input.mousePosition;
         screenPoint.z = Camera.main.nearClipPlane; //distance of the plane from the camera
-        Debug.Log(screenPoint.z);
 
         transform.position = Camera.main.ScreenToWorldPoint(screenPoint);
 
@@ -56,7 +53,8 @@ public class PartyFrameDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         if (RectTransformUtility.RectangleContainsScreenPoint(partyRect, screenPoint))
         {
-            Debug.Log("Party frame hit!!");
+            //Debug.Log("Party frame hit!!");
+            //TODO Reposition the unit
         }
         else
         {

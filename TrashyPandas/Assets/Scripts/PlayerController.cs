@@ -37,8 +37,6 @@ public class PlayerController : MonoBehaviour {
     public UnitInfoChanged unitInfoChanged;
 
     public int maxUnits = 4;
-    [SerializeField]
-    private Transform heroContainer;
 
 
     [SerializeField]
@@ -165,7 +163,6 @@ public class PlayerController : MonoBehaviour {
         if (scene.buildIndex == 0)
         {
             Debug.Log("Town loaded");
-            heroContainer = GameObject.Find("HeroContainer").transform;
 
             //TODO if the unit is in the party, don't add it to available, but still create the hero panel
             FindObjectOfType<HeroListUI>().SetupList();
