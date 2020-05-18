@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour {
 
     public PlayerHeroInfo playerHeroInfo;
 
+    public delegate void PartyChanged();
+    public PartyChanged partyChanged;
+
+
     public delegate void UnitInfoChanged();
     public UnitInfoChanged unitInfoChanged;
 
@@ -114,8 +118,12 @@ public class PlayerController : MonoBehaviour {
     
     public void EmbarkOnMission()
     {
-        if (playerHeroInfo.party.Length < 1) return;
-        
+        if (GetPartySize() < 1)
+        {
+            Debug.Log("Too few members in the party. Did not embark");
+            return;
+        }
+
         SceneManager.LoadScene(1);
         //Embark on the mission!
     }
@@ -136,6 +144,7 @@ public class PlayerController : MonoBehaviour {
       //  Debug.Log("Adding " + unit + " to the party");
         playerHeroInfo.AddUnitToParty(unit, partyIndex);
         RemoveUnit(unit);
+        partyChanged();
     }
 
     public void RemoveFromParty(int index)
@@ -147,6 +156,7 @@ public class PlayerController : MonoBehaviour {
         AddUnit(playerHeroInfo.party[index]);
         FindObjectOfType<HeroListUI>().RemoveHeroFromParty(playerHeroInfo.party[index]);
         playerHeroInfo.party[index] = null;
+        partyChanged();
 
     }
 
@@ -172,6 +182,11 @@ public class PlayerController : MonoBehaviour {
 
         }
 
+    }
+
+    public int GetPartySize()
+    {
+        return playerHeroInfo.GetPartySize();
     }
 
     public void SpawnUnits()

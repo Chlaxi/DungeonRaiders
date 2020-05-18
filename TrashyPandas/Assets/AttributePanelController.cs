@@ -37,6 +37,9 @@ public class AttributePanelController : MonoBehaviour {
 
     public void GetInfo()
     {
+        if (stats == null)
+            return;
+
         isLevelingUp = stats.CanLevelUp;
         foreach (AttributeContainer att in statContainers)
         {

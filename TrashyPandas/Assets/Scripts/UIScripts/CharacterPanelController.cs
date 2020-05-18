@@ -54,7 +54,6 @@ public class CharacterPanelController : MonoBehaviour {
     /// </summary>
     public void UpdateUI()
     {
-        Debug.Log("Updating info for " + unit.name);
         if (unit == null) return;
 
         unitName.text = unit.name;

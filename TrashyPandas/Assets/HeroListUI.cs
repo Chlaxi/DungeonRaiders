@@ -17,7 +17,6 @@ public class HeroListUI : MonoBehaviour {
     private void Awake()
     {
         selfRect = GetComponent<RectTransform>();
-        Debug.Log("unit List is ready");
     }
 
     
@@ -37,7 +36,8 @@ public class HeroListUI : MonoBehaviour {
 
     public void SetupPartyList(PlayerUnit unit, PartyFrames frame)
     {
-        if (unit == null || frame == null) return;
+        if (unit == null || frame == null)
+            return;
 
         AddHeroToParty(unit, frame);
     }

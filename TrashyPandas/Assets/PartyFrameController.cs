@@ -9,11 +9,11 @@ public class PartyFrameController : MonoBehaviour {
 
     public void SetupParty(PlayerUnit[] units)
     {
-
         for (int i = 0; i < 4; i++)
         {
-            if (units[i] == null) continue;
-
+            if (units[i] == null)
+                continue;
+            
             FindObjectOfType<HeroListUI>().SetupPartyList(units[i],partyFrames[i]);
         }
 

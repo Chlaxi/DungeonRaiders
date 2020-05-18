@@ -5601,9 +5601,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partyFrames:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1340108444}
+  - {fileID: 1707087361}
+  - {fileID: 896113024}
   - {fileID: 1347755733}
 --- !u!1 &1116984778
 GameObject:
@@ -9797,6 +9797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4655e1e5fdb53164192fa542c28bc696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1870964582}
+  canEmbark: 0
 --- !u!1 &1880747874
 GameObject:
   m_ObjectHideFlags: 0

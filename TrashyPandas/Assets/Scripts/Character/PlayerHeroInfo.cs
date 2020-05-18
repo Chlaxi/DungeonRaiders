@@ -50,5 +50,16 @@ public class PlayerHeroInfo : ScriptableObject {
         allUnits.AddRange(availableUnits.ToArray());
 
         return allUnits.ToArray();
-}
+    }
+
+    public int GetPartySize()
+    {
+        int partyCount = 0;
+        foreach(PlayerUnit unit in party)
+        {
+            if (unit != null)
+                partyCount++;
+        }
+        return partyCount;
+    }
 }
