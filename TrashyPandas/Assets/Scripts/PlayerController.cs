@@ -160,6 +160,16 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Switches the position of two party members
+    /// </summary>
+    /// <param name="a">First party member</param>
+    /// <param name="b">Second party member</param>
+    public void SwitchPlace(int a, int b)
+    {
+        playerHeroInfo.SwitchPlace(a, b);
+    }
+
     //TODO Make this smarter, by using TownController, etc.
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

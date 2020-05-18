@@ -9,9 +9,9 @@ public class PartyFrames : MonoBehaviour {
 
     public int partyIndex;
     private int unitIndex;
-    [SerializeField] private HeroPanel heroRef;
-
+    public HeroPanel heroRef;
     public PlayerUnit unit;
+
     private RectTransform rectT;
 
     public Image icon;
@@ -41,13 +41,22 @@ public class PartyFrames : MonoBehaviour {
 //        Debug.Log("Unit added to party");
     }
 
+    public void Replace(PlayerUnit unit, HeroPanel heropanel)
+    {
+        Deselect();
+        this.unit = unit;
+        heroRef = heropanel;
+        icon.sprite = unit.GetComponent<CharacterStats>().unitClass.icon;
+    }
+
     public void RemoveUnit()
     {
+        Debug.Log("Unit ("+unit.name + ") removed from party");
         unit = null;
         PlayerController.instance.RemoveFromParty(partyIndex);
         heroRef = null;
         icon.sprite = null;
-        Debug.Log("Unit removed from party");
+     
     }
 
     public void OnClick()
@@ -81,8 +90,6 @@ public class PartyFrames : MonoBehaviour {
             heroRef.Deselect();
         }
         isHighlit = false;
-        border.color = normal_color;
-
-        
+        border.color = normal_color;    
     }
 }

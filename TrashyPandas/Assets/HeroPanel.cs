@@ -31,6 +31,13 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
     protected bool menuIsOpen = false;
     private bool highlit = false;
 
+    private Image container;
+
+    private void Start()
+    {
+        container = GetComponent<Image>();
+    }
+
     public bool SetupHeroPanel(PlayerUnit unit)
     {
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
@@ -119,11 +126,12 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
     {
       //  layout.ignoreLayout = true;
         transform.SetParent(canvas.transform);
+        container.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-
+        //Instantiate new object, which will be dragged?
 
         Vector3 screenPoint = Input.mousePosition;
         screenPoint.z = 61.0f; //distance of the plane from the camera
@@ -139,6 +147,7 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
         transform.SetParent(content);
      //   layout.ignoreLayout = false;
         transform.localPosition = Vector3.zero;
+        container.raycastTarget = true;
 
     }
 
@@ -156,13 +165,29 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
         {
             PartyFrames frame = hitObjects[0].gameObject.GetComponent<PartyFrames>();
 
-            if(frame == null)
-            {
-            }
-            else
+            if(frame != null)
             {
                 if (!isInParty)
+                {
                     AddToParty(frame);
+                    return;
+                }
+
+                if(frame.unit != null)
+                {
+                    if(partyFrame == null)
+                    {
+                        throw new System.Exception(name + " doesn't have any party frame assigned, despite being in the party");
+                    }
+                    else
+                    {
+                        PlayerController.instance.SwitchPlace(partyFrame.partyIndex, frame.partyIndex);
+                        frame.heroRef.ReplaceFrame(partyFrame);
+                        ReplaceFrame(frame);
+                        
+                    }
+                    
+                }
             }
         }
    
@@ -174,6 +199,16 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
         partyFrame = frame;
         SetColor();
         frame.AddUnit(unit, this);
+    }
+
+    public void ReplaceFrame(PartyFrames frame)
+    {
+        if (!isInParty)
+            return;
+
+        partyFrame = frame;
+        SetColor();
+        frame.Replace(unit, this);
     }
 
     public void RemoveFromParty()

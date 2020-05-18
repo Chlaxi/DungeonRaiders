@@ -22,6 +22,13 @@ public class PlayerHeroInfo : ScriptableObject {
 
     }
 
+    public void SwitchPlace(int a, int b)
+    {
+        PlayerUnit tempUnit = party[a];
+        party[a] = party[b];
+        party[b] = tempUnit;
+    }
+
     public void AddUnit(PlayerUnit unit)
     {
         if (availableUnits.Contains(unit))
