@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: PlayerHeroInfo
   m_EditorClassIdentifier: 
   party:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  availableUnits:
   - {fileID: 114757602844101502, guid: ed581576acf56274f8cea3c13ec12d19, type: 3}
-  - {fileID: 114721407088735714, guid: e0b81b4d745b9704db9e8afac8badcfd, type: 3}
   - {fileID: 114453979819236304, guid: 9dce6254226cae94dada1b04d45c7da8, type: 3}
+  - {fileID: 114721407088735714, guid: e0b81b4d745b9704db9e8afac8badcfd, type: 3}
   - {fileID: 114666338325046334, guid: 5f099d17925006245b6cccc1db1fefd4, type: 3}
+  availableUnits: []

@@ -11,10 +11,15 @@ public class ClickMovement : MonoBehaviour {
     [SerializeField] float offset;
     [SerializeField] private bool isHeld;
 
+    private float minLeft;
+    private float minRight;
+
     private void Start()
     {
         controller = FindObjectOfType<CharacterController2D>();
         rect = GetComponent<RectTransform>();
+
+        
     }
 
     private void FixedUpdate()
@@ -40,7 +45,9 @@ public class ClickMovement : MonoBehaviour {
         if (CombatManager.InCombat) return;
 
         isHeld = true;
-        width = rect.rect.width;
+        minLeft = (width / 2) - offset;
+        minRight = (width / 2) + offset;
+        width = Screen.width;// rect.rect.width;
     }
 
     public void OnRelease()
