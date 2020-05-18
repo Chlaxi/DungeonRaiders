@@ -9,18 +9,25 @@ public class PartyFrames : MonoBehaviour {
 
     public int partyIndex;
     private int unitIndex;
+    [SerializeField] private HeroPanel heroRef;
 
     public PlayerUnit unit;
     private RectTransform rectT;
 
     public Image icon;
 
+    private Image border;
+    public bool isHighlit = false;
+    [SerializeField] private Color highlight_color;
+    [SerializeField] private Color normal_color;
+
     private void Start()
     {
         rectT = GetComponent<RectTransform>();
+        border = GetComponent<Image>();
     }
 
-    public void AddUnit(PlayerUnit unit)
+    public void AddUnit(PlayerUnit unit, HeroPanel heropanel)
     {
         if(this.unit != null)
         {
@@ -28,7 +35,7 @@ public class PartyFrames : MonoBehaviour {
             RemoveUnit();
         }
         this.unit = unit;
-
+        heroRef = heropanel;
         PlayerController.instance.AddToParty(unit, partyIndex);
         icon.sprite = unit.GetComponent<CharacterStats>().unitClass.icon;
 //        Debug.Log("Unit added to party");
@@ -38,14 +45,44 @@ public class PartyFrames : MonoBehaviour {
     {
         unit = null;
         PlayerController.instance.RemoveFromParty(partyIndex);
-        
+        heroRef = null;
         icon.sprite = null;
         Debug.Log("Unit removed from party");
     }
 
     public void OnClick()
     {
-        if(unit != null) CharacterPanelController.instance.Open(unit);
+        if (unit == null || heroRef == null)
+            return;
+
+        heroRef.Select();
+        CharacterPanelController.instance.SetUnitIndex(partyIndex);
+        Highlight();
+        
+    }
+
+    public void Highlight()
+    {
+        border.color = highlight_color;
+        isHighlit = true;
+        if (heroRef != null)
+            heroRef.HighLight();
+    }
+
+    public void Deselect()
+    {
+        //if (CharacterPanelController.instance.GetUnitIndex() == partyIndex)
+        if(heroRef!= null && heroRef.GetPanelState())  
+            return;
+
+        if (heroRef != null && isHighlit)
+        {
+            isHighlit = false;
+            heroRef.Deselect();
+        }
+        isHighlit = false;
+        border.color = normal_color;
+
         
     }
 }

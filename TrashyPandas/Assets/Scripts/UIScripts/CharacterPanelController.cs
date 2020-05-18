@@ -14,7 +14,9 @@ public class CharacterPanelController : MonoBehaviour {
     }
     #endregion
 
-    private int unitIndex;
+    public bool isOpen = false;
+
+    private int unitIndex = -1; //-1 = none
     private PlayerUnit unit;
     private CharacterStats stats;
     private CanvasGroup canvasGroup;
@@ -22,7 +24,7 @@ public class CharacterPanelController : MonoBehaviour {
     public Text unitName;
     public Text unitClass;
     public Text unitLevel;
-
+    private HeroPanel hero;
 
 
     private void Start()
@@ -62,10 +64,17 @@ public class CharacterPanelController : MonoBehaviour {
 
     }
 
-    public void Open(PlayerUnit unit)
+    public void Open(HeroPanel hero)
     {
-        this.unit = unit;
+        if (isOpen && this.hero != null)
+        {
+            this.hero.Deselect();
+        }
+
+        this.hero = hero;
+        unit = hero.unit;
         canvasGroup.alpha = 1;
+        isOpen = true;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
         Setup();
@@ -74,8 +83,14 @@ public class CharacterPanelController : MonoBehaviour {
     public void Close()
     {
         canvasGroup.alpha = 0;
+        isOpen = false;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+        unitIndex = -1;
+        if(hero != null)
+        {
+            hero.Deselect();
+        }
     }
 
     public void DebugLevelUp()
@@ -106,4 +121,8 @@ public class CharacterPanelController : MonoBehaviour {
         PlayerController.instance.unitInfoChanged -= UpdateUI;
     }
 
+    public void SetUnitIndex(int index)
+    {
+        unitIndex = index;
+    }
 }

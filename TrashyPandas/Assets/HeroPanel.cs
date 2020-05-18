@@ -20,11 +20,16 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
     private Image panelImage;
 
     [SerializeField] private Color partyColor;
+    [SerializeField] private Color menuOpenColor;
+    [SerializeField] private Color highlightColor;
     [SerializeField] private Color defaultColor;
 
     private bool isSetUp = false;
     private bool isInParty;
+    private PartyFrames partyFrame;
     public int heroIndex;
+    protected bool menuIsOpen = false;
+    private bool highlit = false;
 
     public bool SetupHeroPanel(PlayerUnit unit)
     {
@@ -73,9 +78,36 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
         }
     }
 
-    public void OnClick()
+    public void Select()
     {
-        CharacterPanelController.instance.Open(unit);
+        if (menuIsOpen)
+            return;
+
+        CharacterPanelController.instance.Open(this);
+        menuIsOpen = true;
+        SetColor();
+        if (partyFrame != null)
+        {
+            partyFrame.Highlight();
+        }
+    }
+
+    public void HighLight()
+    {
+        highlit = true;
+        SetColor();
+    }
+
+    public void Deselect()
+    {
+        menuIsOpen = false;
+        highlit = false;
+        SetColor();
+
+        if(partyFrame != null)
+        {
+            partyFrame.Deselect();
+        }
     }
 
     public void OnDestroy()
@@ -129,7 +161,7 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
             }
             else
             {
-                if(!isInParty)
+                if (!isInParty)
                     AddToParty(frame);
             }
         }
@@ -139,14 +171,47 @@ public class HeroPanel : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDra
     public void AddToParty(PartyFrames frame)
     {
         isInParty = true;
-        panelImage.color = partyColor;
-        frame.AddUnit(unit);
+        partyFrame = frame;
+        SetColor();
+        frame.AddUnit(unit, this);
     }
 
     public void RemoveFromParty()
     {
         isInParty = false;
+        partyFrame = null;
+        SetColor();
+    }
+
+    private void SetColor()
+    {
+        if (menuIsOpen)
+        {
+            panelImage.color = menuOpenColor;
+            return;
+        }
+
+        if (highlit)
+        {
+            panelImage.color = highlightColor;
+            return;
+        }
+
+        if (isInParty)
+        {
+            panelImage.color = partyColor;
+            return;
+        }
+
         panelImage.color = defaultColor;
     }
 
+    /// <summary>
+    /// Used to check whether the panel is open for this hero or not
+    /// </summary>
+    /// <returns>Is this the character displayed in the character panel?</returns>
+    public bool GetPanelState()
+    {
+        return menuIsOpen;
+    }
 }
