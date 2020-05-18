@@ -51,7 +51,7 @@ public class PartyFrames : MonoBehaviour {
 
     public void RemoveUnit()
     {
-        Debug.Log("Unit ("+unit.name + ") removed from party");
+        Deselect();
         unit = null;
         PlayerController.instance.RemoveFromParty(partyIndex);
         heroRef = null;
