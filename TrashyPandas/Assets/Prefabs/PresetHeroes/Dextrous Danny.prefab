@@ -2818,7 +2818,7 @@ MonoBehaviour:
   level: 3
   availableAttPoints: 0
   hitDieRolls: 0800000005000000
-  strength: 12
+  strength: 10
   dexterity: 14
   constitution: 12
   intellect: 8

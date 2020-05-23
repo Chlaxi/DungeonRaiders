@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[System.Serializable]
+public struct EffectInfo
+{
+    public AbilityEffects effect;
+    public bool UseOwnAttackRoll;
+    public bool canCrit;
+
+}
+
 /// <summary>
 /// Contains information about whether the attack was a hit and or a crit.
 /// </summary>
@@ -47,11 +56,9 @@ public class Ability : ScriptableObject {
     public AbilityModifier[] attackRollModifiers;
     public AbilitySaves Saves;
     
-    public AbilityEffects[] effects;
+    public EffectInfo[] effects;
 
     [Header("Target Info")]
-
-    public bool canCrit;
     public bool guaranteedHit;
 
     public bool canCastOnSelf = false;
@@ -88,6 +95,7 @@ public class Ability : ScriptableObject {
         this.caster = caster;
         caster.AnimationTrigger(animationTrigger);
         //Do something with the particle effect
+
         UseAbility(target);
         return true;
     }
@@ -99,22 +107,39 @@ public class Ability : ScriptableObject {
     private void UseAbility(ICharacter target)
     {
         int critChance = 0; //Get caster crit chance or ability crit chance
-
-        rollInfo = CheckHit(target.GetAC(), critChance);
-
-        if (guaranteedHit) rollInfo.wasHit = true;
-
-        Debug.Log(caster.name+ " used " + name+ " (" + rollInfo.ToString() + ")");
-
-        if (rollInfo.wasHit)
+        
+        
+        for(int i = 0; i < effects.Length; i++)
         {
-//          Debug.Log(name + "Was a hit");
-            foreach (AbilityEffects effect in effects)
+            EffectInfo effect = effects[i];
+
+
+         
+
+            //Update check, so the first effect must either be guaranteed or will roll.
+            if (i > 0 && !effect.UseOwnAttackRoll)
             {
-                effect.ApplyEffect(this, target);
+                
+                if (rollInfo.wasHit)
+                {
+                    effect.effect.ApplyEffect(this, target);
+                    Debug.Log("Effect auto-confirmed, since the ability already hit");
+                }
+                return;
+            }
+
+            rollInfo = CheckHit(target.GetAC(), critChance);
+
+            if (guaranteedHit) rollInfo.wasHit = true;
+            
+            Debug.Log(caster.name + " used " + name + " (" + rollInfo.ToString() + ")");
+
+            if (rollInfo.wasHit)
+            {
+                //          Debug.Log(name + "Was a hit");
+                effect.effect.ApplyEffect(this, target);
             }
         }
-        
     }
 
 
@@ -142,7 +167,7 @@ public class Ability : ScriptableObject {
             return rollInfo;
         }
 
-        //Checks if it's within the critical threat range.
+        //Checks if it's within the critical threat range. If target is an ally, nat 20 should just confirm hit
         if (rollValue >= 20 - critChance)
         {
             Debug.Log("Threat gained!");

@@ -739,7 +739,7 @@ MonoBehaviour:
   stats: {fileID: 114673749939496998}
   initiative: 0
   abilities:
-  - {fileID: 11400000, guid: 1d851f1ea33f08a4f8bcf208e71e1928, type: 2}
+  - {fileID: 11400000, guid: df3785dc57fe9dd48aeb64b6792ba640, type: 2}
   - {fileID: 11400000, guid: 37aa53c460148ce46861e67d8d110349, type: 2}
   healthBar: {fileID: 114923238467115472}
   graphics: {fileID: 1459507897818494}
@@ -761,7 +761,7 @@ MonoBehaviour:
   level: 3
   availableAttPoints: 0
   hitDieRolls: 0a00000006000000
-  strength: 12
+  strength: 14
   dexterity: 10
   constitution: 14
   intellect: 9
