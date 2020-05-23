@@ -15,6 +15,7 @@ public class CharacterStats : MonoBehaviour {
 
     private int maxHealth;
     private int currentHealth;
+    //Use maths instead?
     private int[] modifiers = {-5, -4, -4, -3, -3, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17};
 
     [SerializeField] private List<int> hitDieRolls = new List<int>();
@@ -28,7 +29,12 @@ public class CharacterStats : MonoBehaviour {
 
 
     public int baseAttackBonus = 0;
-    private int armour = 0;
+    [SerializeField] private int armour = 0;
+
+    private void Start()
+    {
+        Setup();
+    }
 
     public void Setup()
     {
@@ -49,9 +55,11 @@ public class CharacterStats : MonoBehaviour {
         {
             SetMaxHealth();
         }
-            baseAttackBonus = unitClass.BaseAttackBonus;
+            
+        baseAttackBonus = unitClass.BaseAttackBonus;
         currentHealth = maxHealth;
         character.onHealthChange();
+
     }
 
 
@@ -122,11 +130,13 @@ public class CharacterStats : MonoBehaviour {
     {
         get
         {
+
             return maxHealth;
         }
 
         set
         {
+            Debug.Log("Max health set to " + value);
             maxHealth = value;
         }
     }

@@ -2814,16 +2814,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: {fileID: 11400000, guid: 871da6932b952d24ab5f377a43a82cb8, type: 2}
-  level: 1
+  level: 3
   availableAttPoints: 0
-  hitDieRolls: 
+  hitDieRolls: 0800000005000000
   strength: 12
   dexterity: 14
   constitution: 12
   intellect: 8
   wisdom: 6
   charisma: 14
-  baseAttackBonus: 0
+  baseAttackBonus: 2
+  armour: 2
 --- !u!1 &1614304258586250
 GameObject:
   m_ObjectHideFlags: 0

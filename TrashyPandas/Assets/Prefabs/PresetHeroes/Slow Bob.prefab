@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1ad1d8357eb2443be8f483f5251d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 114673749939496998}
   initiative: 0
   abilities:
   - {fileID: 11400000, guid: 1d851f1ea33f08a4f8bcf208e71e1928, type: 2}
@@ -757,16 +757,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: {fileID: 11400000, guid: 41f2ea1223f0cd4478855ae6d529208d, type: 2}
-  level: 1
+  level: 3
   availableAttPoints: 0
-  hitDieRolls: 
-  strength: 11
+  hitDieRolls: 0a00000006000000
+  strength: 12
   dexterity: 10
-  constitution: 13
+  constitution: 14
   intellect: 9
   wisdom: 9
   charisma: 10
-  baseAttackBonus: 2
+  baseAttackBonus: 3
+  armour: 3
 --- !u!1 &1150149792817358
 GameObject:
   m_ObjectHideFlags: 0

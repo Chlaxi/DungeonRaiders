@@ -24,6 +24,8 @@ public class CharacterPanelController : MonoBehaviour {
     public Text unitName;
     public Text unitClass;
     public Text unitLevel;
+    public Text unitBaB;
+    public Text UnitAC;
     private HeroPanel hero;
 
 
@@ -45,7 +47,10 @@ public class CharacterPanelController : MonoBehaviour {
         stats = unit.GetComponent<CharacterStats>();
         unitClass.text = stats.unitClass.name;
         unitLevel.text = stats.level.ToString();
-
+        unitBaB.text = stats.baseAttackBonus.ToString();
+        UnitAC.text = (10+stats.GetArmour()).ToString();
+        Debug.Log("BAB: " + stats.baseAttackBonus.ToString());
+        Debug.Log("AC: " + stats.GetArmour().ToString());
         attributeController.Setup(stats);
     }
 
@@ -59,6 +64,10 @@ public class CharacterPanelController : MonoBehaviour {
         unitName.text = unit.name;
         unitClass.text = stats.unitClass.name;
         unitLevel.text = stats.level.ToString();
+        unitBaB.text = stats.baseAttackBonus.ToString();
+        UnitAC.text = (10+stats.GetArmour()).ToString();
+        Debug.Log("BAB: " + stats.baseAttackBonus.ToString());
+        Debug.Log("AC: " + stats.GetArmour().ToString());
         attributeController.GetInfo();
 
     }

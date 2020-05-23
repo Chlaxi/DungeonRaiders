@@ -8,16 +8,15 @@ public abstract class ICharacter : MonoBehaviour
 {
     public delegate void UnitDied(ICharacter unit);
     public UnitDied unitDied;
-    //public string name;
+
     public delegate void UnitIsReady();
     public UnitIsReady unitIsReady;
 
     public delegate void OnHealthChange();
     public OnHealthChange onHealthChange;
 
-    [HideInInspector] public CharacterStats stats;
+    public CharacterStats stats;
 
-    int baseArmour = 5;
     public int initiative = 0;
 
     public List<Ability> abilities = new List<Ability>();
@@ -37,15 +36,14 @@ public abstract class ICharacter : MonoBehaviour
     {
 
         if (animator == null) animator = GetComponent<Animator>();
-
+    
         SetupCharacter();
     }
 
     public void SetupCharacter()
     {
         stats = GetComponent<CharacterStats>();
-        stats.Setup();
-        
+       // stats.Setup();
     }
 
     public void SpawnCharacter()
@@ -59,6 +57,10 @@ public abstract class ICharacter : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Returns the character's calculated Armour Class (AC)
+    /// </summary>
+    /// <returns></returns>
     public int GetAC()
     {
         //10 + armourBonus + shieldBonus + dexterity + 
@@ -67,6 +69,9 @@ public abstract class ICharacter : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Rolls the initiative for the character (d20 + dexterity)
+    /// </summary>
     public void SetInitiative()
     {
         int initiativeRoll = Random.Range(0, 20);
@@ -74,7 +79,11 @@ public abstract class ICharacter : MonoBehaviour
       //  Debug.Log(name + " rolled " + initiativeRoll + " for a total of " + initiative);
     }
 
-    public int getInitiative()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>Returns the character's initiative</returns>
+    public int GetInitiative()
     {
         return initiative;
     }
@@ -98,6 +107,10 @@ public abstract class ICharacter : MonoBehaviour
         stats.ModifyHealth(effect.hitInfo);
     }
 
+    /// <summary>
+    /// Used to apply combat effects, such as damage, healing, damage over time, ad other status effects.
+    /// </summary>
+    /// <param name="effect"></param>
     public void ApplyEffect(AbilityEffects effect)
     {
 
@@ -275,6 +288,14 @@ public abstract class ICharacter : MonoBehaviour
     {
         return GetComponentInParent<CombatSlot>();
     }
+    
+    public int GetCurrentHealth()
+    {
+        return stats.CurrentHealth;
+    }
+
     #endregion
+
+
 
 }
