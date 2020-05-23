@@ -45,15 +45,15 @@ public class CombatAI : MonoBehaviour {
             CombatSlot[] targetPool = GetPool(ability);
             bool[] range;
 
-            if (ability.behaviour.requiredPosition[currentPosition])
+            if (ability.requiredPosition[currentPosition])
             {
-                if (ability.behaviour.canTargetOpponents)
+                if (ability.canTargetOpponents)
                 {
-                    range = ability.behaviour.attackRange;
+                    range = ability.attackRange;
                 }
                 else
                 {
-                    range = ability.behaviour.alliedRange;
+                    range = ability.alliedRange;
                 }
 
                 for (int j = 0; j < targetPool.Length; j++)
@@ -108,7 +108,7 @@ public class CombatAI : MonoBehaviour {
         CombatSlot[] targetPool = GetPool(ability);
   
 
-        if (ability.behaviour.canCastOnSelf)
+        if (ability.canCastOnSelf)
         {
             Debug.Log("Self cast!");
             StartCoroutine(Act(ability, self));
@@ -223,14 +223,14 @@ public class CombatAI : MonoBehaviour {
 
     private CombatSlot[] GetPool(Ability ability)
     {
-        bool[] range = ability.behaviour.attackRange;
+        bool[] range = ability.attackRange;
 
-        if (ability.behaviour.canTargetOpponents)
+        if (ability.canTargetOpponents)
         {
             return CombatManager.instance.playerPool;
             //range = ability.behaviour.attackRange;
         }
-        else if (ability.behaviour.canCastOnAllies)
+        else if (ability.canCastOnAllies)
         {
            return CombatManager.instance.enemyPool;
            // range = ability.behaviour.alliedRange;
@@ -241,10 +241,10 @@ public class CombatAI : MonoBehaviour {
     private bool[] GetRange(Ability ability)
     {
 
-        if (ability.behaviour.canTargetOpponents)
+        if (ability.canTargetOpponents)
         {
-            return ability.behaviour.attackRange;
+            return ability.attackRange;
         }
-        return ability.behaviour.alliedRange;              
+        return ability.alliedRange;              
     }
 }

@@ -52,7 +52,7 @@ public class AbilitySlotController : MonoBehaviour {
     {
         int position = unit.GetPosition().GetPositionIndex();
         //Checks if we are standing in the right spot for the ability.
-        if (!ability.behaviour.requiredPosition[position])
+        if (!ability.requiredPosition[position])
         {
             Disable();
             image.sprite = ability.icon;
@@ -60,12 +60,12 @@ public class AbilitySlotController : MonoBehaviour {
         }
 
         //Checks whether there's enemies within range for the attack.
-        if (ability.behaviour.canTargetOpponents)
+        if (ability.canTargetOpponents)
         {
             int enemiesAvailable = 0;
-            for (int i = 0; i < ability.behaviour.attackRange.Length; i++)
+            for (int i = 0; i < ability.attackRange.Length; i++)
             {
-                bool canHit = ability.behaviour.attackRange[i];
+                bool canHit = ability.attackRange[i];
                 //If we can't hit anything in that spot, we don't even care to check for enemies there.
                 if (!canHit)
                 {
@@ -89,7 +89,7 @@ public class AbilitySlotController : MonoBehaviour {
             }
         }
 
-        if(ability.behaviour.canCastOnAllies || ability.behaviour.canCastOnSelf)
+        if(ability.canCastOnAllies || ability.canCastOnSelf)
         {
             Enable();
         }

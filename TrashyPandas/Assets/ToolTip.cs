@@ -30,7 +30,7 @@ public class ToolTip : MonoBehaviour {
         abiityNameText.text = ability.name;
         description.text = ability.description;
 
-        range = ability.behaviour.requiredPosition;
+        range = ability.requiredPosition;
         for (int i = 0; i < requiredPositions.Length; i++)
         {
             if (range[i])
@@ -45,15 +45,15 @@ public class ToolTip : MonoBehaviour {
 
 
 
-        if (ability.behaviour.canCastOnAllies)
+        if (ability.canCastOnAllies)
         {
             curColour = allyColour;
-            range = ability.behaviour.alliedRange;
+            range = ability.alliedRange;
         }
         else
         {
             curColour = enemyColour;
-            range = ability.behaviour.attackRange;
+            range = ability.attackRange;
         }
 
         for (int i = 0; i < targetPositions.Length; i++)
@@ -72,12 +72,12 @@ public class ToolTip : MonoBehaviour {
         //Change this once the ability/behaviour relation is reworked.
         string modifierText ="";
 
-        for (int i = 0; i < ability.behaviour.hitmodifiers.Length; i++)
+        for (int i = 0; i < ability.attackRollModifiers.Length; i++)
         {
-            if(ability.behaviour.hitmodifiers[i])
+            if(ability.attackRollModifiers[i].isApplied)
             {
                 if (!modifierText.Equals("")) modifierText += ", ";
-                modifierText += slot.unit.stats.GetStatName(i);
+                modifierText += ability.attackRollModifiers[i].modifierType.ToString();
             }
         }
         abilityModifiers.text = modifierText;
