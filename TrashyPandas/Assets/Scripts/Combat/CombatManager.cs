@@ -47,7 +47,13 @@ public class CombatManager : MonoBehaviour {
 
     private void Start()
     {
+        
         graveyard = GameObject.Find("Graveyard").transform;
+    }
+
+    public void Setup()
+    {
+        SetupUnits(playerPool);
     }
 
     #region Combat Logic
@@ -94,6 +100,12 @@ public class CombatManager : MonoBehaviour {
 
     private void SetupUnits(CombatSlot[] pool)
     {
+
+        if (pool.Equals(playerPool))
+        {
+            PlayerUnits.Clear();
+        }
+
         ICharacter unit;
         for (int i = 0; i < pool.Length; i++)
         {
@@ -322,6 +334,7 @@ public class CombatManager : MonoBehaviour {
     public void EndCombat()
     {
         InCombat = false;
+        CombatUIController.instance.CoverLeftPanel(false);
         initiativeQueue.Clear();
         foreach (ICharacter unit in PlayerUnits)
         {
@@ -418,7 +431,7 @@ public class CombatManager : MonoBehaviour {
                         break;
                     }
 
-                    if (unit.getInitiative() > initiativeList[i].getInitiative())
+                    if (unit.GetInitiative() > initiativeList[i].GetInitiative())
                     {
 
                         initiativeList.Insert(i, unit);

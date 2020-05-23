@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,8 +13,8 @@ MonoBehaviour:
   m_Name: Default Class
   m_EditorClassIdentifier: 
   icon: {fileID: 21300016, guid: e994282620304fd4fb7c6ed66e211a2f, type: 3}
-  BaseAttackBonus: 0
-  Fortitude: 0
-  Reflex: 0
-  Will: 0
+  BaseAttackBonus: 00000000
+  Fortitude: 00000000
+  Reflex: 00000000
+  Will: 00000000
   hitDieSize: 8

@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1ad1d8357eb2443be8f483f5251d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Dobby the Druid
   stats: {fileID: 114758351437454790}
   initiative: 0
   abilities:
@@ -100,6 +101,7 @@ MonoBehaviour:
   wisdom: 14
   charisma: 10
   baseAttackBonus: 2
+  armour: 0
 --- !u!1 &1011957525519070
 GameObject:
   m_ObjectHideFlags: 0

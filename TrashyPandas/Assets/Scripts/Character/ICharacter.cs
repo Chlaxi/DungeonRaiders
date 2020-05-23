@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public abstract class ICharacter : MonoBehaviour
 {
+    public new string name;
+    
     public delegate void UnitDied(ICharacter unit);
     public UnitDied unitDied;
 

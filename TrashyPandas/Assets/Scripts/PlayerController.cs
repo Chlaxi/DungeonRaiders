@@ -59,7 +59,10 @@ public class PlayerController : MonoBehaviour {
         set
         {
             currentTarget = value;
-            CombatUIController.instance.UpdateRightPanel(currentTarget);
+            if (CombatManager.InCombat)
+            {
+                CombatUIController.instance.UpdateRightPanel(currentTarget);
+            }
         }
     }
 
@@ -177,7 +180,7 @@ public class PlayerController : MonoBehaviour {
         if(scene.buildIndex==1)
         {
             PartyController partyController = FindObjectOfType<PartyController>();
-            partyController.SetupParty(playerHeroInfo.party);
+            StartCoroutine(partyController.SetupParty(playerHeroInfo.party));
         }
 
         if (scene.buildIndex == 0)

@@ -35,11 +35,6 @@ public abstract class AbilityEffects : ScriptableObject{
     public EffectHitInfo hitInfo;
     public StatusEffect statusEffect;
 
-    public AbilityEffects()
-    {
-
-    }
-
     public virtual void ApplyEffect(Ability ability, ICharacter target)
     {
         int effectValue = 0;

@@ -69,17 +69,18 @@ public class ToolTip : MonoBehaviour {
             }
         }
 
-     //   string modifierText ="";
+        //Change this once the ability/behaviour relation is reworked.
+        string modifierText ="";
 
-    /*    for (int i = 0; i < ability.multipliers.Length; i++)
+        for (int i = 0; i < ability.behaviour.hitmodifiers.Length; i++)
         {
-            if(ability.multipliers[i] != 0)
+            if(ability.behaviour.hitmodifiers[i])
             {
-                if (i > 0) modifierText += ", ";
+                if (!modifierText.Equals("")) modifierText += ", ";
                 modifierText += slot.unit.stats.GetStatName(i);
             }
         }
-        abilityModifiers.text = modifierText;*/
+        abilityModifiers.text = modifierText;
         return true;
     }
 

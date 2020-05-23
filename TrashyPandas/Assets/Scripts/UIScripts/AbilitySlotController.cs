@@ -16,7 +16,7 @@ public class AbilitySlotController : MonoBehaviour {
     private bool isActiveAbility;
     public bool canInteract;
 
-    private void Start()
+    private void Awake()
     {
         image = GetComponent<Image>();
     }
@@ -35,23 +35,64 @@ public class AbilitySlotController : MonoBehaviour {
         this.unit = unit;
         this.ability = ability;
 
-        CheckRange();
 
-    }
 
-    private void CheckRange()
-    {
-       int position = unit.GetPosition().GetPositionIndex();
-        if (!ability.behaviour.requiredPosition[position])
+        if (CombatManager.InCombat)
         {
-            Disable();
-            image.sprite = ability.icon;
+            CheckRange();
         }
         else
         {
             Enable();
         }
 
+    }
+
+    private void CheckRange()
+    {
+        int position = unit.GetPosition().GetPositionIndex();
+        //Checks if we are standing in the right spot for the ability.
+        if (!ability.behaviour.requiredPosition[position])
+        {
+            Disable();
+            image.sprite = ability.icon;
+            return;
+        }
+
+        //Checks whether there's enemies within range for the attack.
+        if (ability.behaviour.canTargetOpponents)
+        {
+            int enemiesAvailable = 0;
+            for (int i = 0; i < ability.behaviour.attackRange.Length; i++)
+            {
+                bool canHit = ability.behaviour.attackRange[i];
+                //If we can't hit anything in that spot, we don't even care to check for enemies there.
+                if (!canHit)
+                {
+                    continue;
+                }
+
+                if (CombatManager.instance.enemyPool[i].unit != null)
+                {
+                    enemiesAvailable++;
+                }
+
+            }
+            if (enemiesAvailable > 0)
+            {
+                Enable();
+            }
+            else
+            {
+                Disable();
+                image.sprite = ability.icon;
+            }
+        }
+
+        if(ability.behaviour.canCastOnAllies || ability.behaviour.canCastOnSelf)
+        {
+            Enable();
+        }
     }
 
     private bool AbilityIsReady()
@@ -115,13 +156,27 @@ else
         }
     }
 
+    /// <summary>
+    /// Used when an ability for this slot is found
+    /// </summary>
     public void Enable()
     {
         SetAsActive(false);
-        canInteract = true;
         image.sprite = ability.icon;
+        if (CombatManager.InCombat)
+        {
+            canInteract = true;
+        }
+        else
+        {
+            //Based on whether out of combat casting is allowed.
+            canInteract = false;
+        }
     }
 
+    /// <summary>
+    /// Used to display empty slots.
+    /// </summary>
     public void Disable()
     {
         abilityUICover.color = unavailableAbilityColour;
@@ -139,6 +194,5 @@ else
     {
 
         CombatUIController.instance.HideTooltip();
-            }
-
+    }
 }

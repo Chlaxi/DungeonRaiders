@@ -7,10 +7,10 @@ public class Classes : ScriptableObject {
 
     public Sprite icon;
 
-    public int BaseAttackBonus;
-    public int Fortitude;
-    public int Reflex;
-    public int Will;
+    public int[] BaseAttackBonus;
+    public int[] Fortitude;
+    public int[] Reflex;
+    public int[] Will;
     public int hitDieSize;
 
     //TODO Finish classses

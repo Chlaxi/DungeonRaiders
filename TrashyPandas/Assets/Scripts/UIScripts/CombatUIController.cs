@@ -12,6 +12,8 @@ public class CombatUIController : MonoBehaviour {
         private void Awake()
     {
         instance = this;
+
+        SetupAbilitySlots();
     }
     #endregion
 
@@ -55,19 +57,25 @@ public class CombatUIController : MonoBehaviour {
     public CanvasGroup prepareForBattleScreen;
 
 
-    private void Start()
+    private void SetupAbilitySlots()
     {
         abilitySlots = abilitySlotContainer.GetComponentsInChildren<AbilitySlotController>();
         for (int i = 0; i < abilitySlots.Length; i++)
         {
             abilitySlots[i].abilityIndex = i;
-            
+
         }
     }
 
    
     public void UpdateLeftPanel(PlayerUnit unit)
     {
+        if (abilitySlots.Length <= 0)
+        {
+            Debug.LogError("Setting up ability slots again?");
+            SetupAbilitySlots();
+        }
+
         currentAblityIndex = -1;
 
         for (int i = 0; i < abilitySlots.Length; i++)
@@ -82,13 +90,17 @@ public class CombatUIController : MonoBehaviour {
         }
 
         playerUnitName.text = unit.name;
+        if(unit.stats == null)
+        {
+            throw new System.Exception("Stats not set up");
+        }
         playerCurHP.text = unit.stats.CurrentHealth.ToString();
         playerMaxHP.text = unit.stats.MaxHealth.ToString();
         playerAC.text = unit.GetAC().ToString();
         playerBaB.text = unit.stats.baseAttackBonus.ToString();
     }
 
-    //TODO if not in combat, and the target is player, set them as active in left panel
+    //TODO when not in combat, set the right panel to be a map or inventory
     public void UpdateRightPanel(ICharacter unit)
     {
         if (unit == null) return;

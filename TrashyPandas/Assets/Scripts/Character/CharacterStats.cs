@@ -45,7 +45,7 @@ public class CharacterStats : MonoBehaviour {
 
         if (level != hitDieRolls.Count)
         {
-         //   Debug.Log("Not enough hit rolls!");
+            //   Debug.Log("Not enough hit rolls!");
             for (int i = hitDieRolls.Count; i < level; i++)
             {
                 RollHitDie();
@@ -55,8 +55,15 @@ public class CharacterStats : MonoBehaviour {
         {
             SetMaxHealth();
         }
-            
-        baseAttackBonus = unitClass.BaseAttackBonus;
+        if (level > unitClass.BaseAttackBonus.Length)
+        {
+            baseAttackBonus = unitClass.BaseAttackBonus[unitClass.BaseAttackBonus.Length - 1];
+        }
+        else
+        {
+            baseAttackBonus = unitClass.BaseAttackBonus[level - 1];
+        }
+
         currentHealth = maxHealth;
         character.onHealthChange();
 
@@ -136,7 +143,6 @@ public class CharacterStats : MonoBehaviour {
 
         set
         {
-            Debug.Log("Max health set to " + value);
             maxHealth = value;
         }
     }

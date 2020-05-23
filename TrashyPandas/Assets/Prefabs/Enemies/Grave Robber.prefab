@@ -3805,6 +3805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351808ad8b90e774d8a1a0aef2209360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Grave Robber
   stats: {fileID: 0}
   initiative: 0
   abilities:
@@ -3877,6 +3878,7 @@ MonoBehaviour:
   wisdom: 10
   charisma: 10
   baseAttackBonus: 0
+  armour: 0
 --- !u!1 &1938834487592858
 GameObject:
   m_ObjectHideFlags: 0

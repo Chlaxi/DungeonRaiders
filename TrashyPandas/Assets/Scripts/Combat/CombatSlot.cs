@@ -88,6 +88,11 @@ public class CombatSlot : MonoBehaviour {
     {
         if (!isActive || unit == null) return;
 
+        if (!CombatManager.InCombat)
+        {
+            PartyController.instance.SetCurrentUnit((int)CBPosition);
+            return;
+        }
 
         PlayerController.instance.CurrentTarget = unit;
         unit.ShowUI();

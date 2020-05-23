@@ -995,6 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1ad1d8357eb2443be8f483f5251d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Speedy Gammy
   stats: {fileID: 114995972726297322}
   initiative: 0
   abilities:
