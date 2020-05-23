@@ -144,8 +144,6 @@ public class CombatManager : MonoBehaviour {
         if (!InCombat)
             return;
 
-
-        Debug.Log("Turn number " + turnCounter);
         isPlayersTurn = false;
 
         currentUnit = initiativeQueue[turnCounter];
@@ -233,14 +231,14 @@ public class CombatManager : MonoBehaviour {
         }
         
         //Check for allied casting
-        if (ability.behaviour.canCastOnAllies)
+        if (ability.canCastOnAllies)
         {
-            for (int i = 0; i < ability.behaviour.alliedRange.Length; i++)
+            for (int i = 0; i < ability.alliedRange.Length; i++)
             {
 
                 if(selfPool[i].unit == null) continue;
 
-                selfPool[i].SetInRange(ability.behaviour.alliedRange[i]);
+                selfPool[i].SetInRange(ability.alliedRange[i]);
                     //GetUnitFromPool(i, selfPool).healthBar.SetPotentialTargetBorder(true);
                 
             }
@@ -248,16 +246,16 @@ public class CombatManager : MonoBehaviour {
 
 
     //Check for opponent casting
-        if (ability.behaviour.canTargetOpponents)
+        if (ability.canTargetOpponents)
         {
         
           //  Debug.Log("Ability can target opponents");
-            for (int i = 0; i < ability.behaviour.attackRange.Length; i++)
+            for (int i = 0; i < ability.attackRange.Length; i++)
             {
                 if(opponentPool[i].unit == null) continue;
 
 
-                opponentPool[i].SetInRange(ability.behaviour.attackRange[i]);
+                opponentPool[i].SetInRange(ability.attackRange[i]);
             }
         }
 
@@ -279,12 +277,12 @@ public class CombatManager : MonoBehaviour {
 
     public void EndTurn()
     {
-        Debug.Log("Turn "+ turnCounter +" ended!");
+//        Debug.Log("Turn "+ turnCounter +" ended!");
         turnCounter++;
         if (turnCounter >= initiativeQueue.Count)
         {
             //Next round
-            Debug.Log("Round " + roundCounter + " is over!");
+  //          Debug.Log("Round " + roundCounter + " is over!");
             roundCounter++;
             StartRound();
             return;

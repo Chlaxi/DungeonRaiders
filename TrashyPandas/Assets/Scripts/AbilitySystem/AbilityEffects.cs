@@ -29,7 +29,9 @@ public struct EffectHitInfo
 
 public abstract class AbilityEffects : ScriptableObject{
 
-    public float[] multipliers = new float[6];
+    public Dice dice;
+    public AbilityModifier[] damageRollModifiers;
+
     public AbilityType abilityType;
     public HitType hitType;
     public EffectHitInfo hitInfo;

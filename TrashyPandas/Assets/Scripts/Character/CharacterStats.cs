@@ -233,6 +233,51 @@ public class CharacterStats : MonoBehaviour {
        return modifiers[statScore];
     }
 
+    /// <summary>
+    /// Gets the character's ability modifiers based on the modifier name
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns>The ability modifier</returns>
+    public int GetModifierFromName(AbilityModifierTypes type)
+    {
+        switch (type)
+        {
+            case AbilityModifierTypes.STR:
+                return GetModifier(strength);
+            
+            case AbilityModifierTypes.DEX:
+                return GetModifier(dexterity);
+
+            case AbilityModifierTypes.CON:
+                return GetModifier(constitution);
+
+            case AbilityModifierTypes.INT:
+                return GetModifier(intellect);
+
+            case AbilityModifierTypes.WIS:
+                return GetModifier(wisdom);
+
+            case AbilityModifierTypes.CHA:
+                return GetModifier(charisma);
+
+            case AbilityModifierTypes.CL:
+                return GetCasterLevel();
+
+            default:
+                return 0;
+        }
+    }
+
+    /// <summary>
+    /// Returns caster level
+    /// </summary>
+    /// <returns></returns>
+    public int GetCasterLevel()
+    {
+        //Refactor: If multiclasses are used, make sure to only get the relevant caster level.
+        return level;
+    }
+
     public string GetStatName(int index)
     {
         switch (index)
