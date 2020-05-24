@@ -139,7 +139,7 @@ public static class AbilityUtilities {
     public static int GetAttackBonus(Ability ability)
     {
 
-        int BaB = ability.caster.stats.baseAttackBonus;
+        int BaB = ability.caster.stats.GetAttackBonus();
 
         int mod = 0;
 
@@ -163,7 +163,7 @@ public static class AbilityUtilities {
     /// <returns>A floored value of the damage bonuses</returns>
     public static int GetDamageBonus(AbilityEffects effect, ICharacter caster)
     {
-        int mod = 0;
+        int mod = caster.stats.GetTempDamageBonus();
 
         for (int i = 0; i < effect.damageRollModifiers.Length; i++)
         {

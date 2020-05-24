@@ -29,7 +29,7 @@ public class BleedStatus : StatusEffect
         //Roll damage
         hitInfo.hitValue = dice.RollDice() + modifier;
         //Deal damage
-        unit.OnEffectOverTime(this);
+        target.OnEffectOverTime(this);
         Debug.Log("Bleed damage!" + hitInfo.hitValue + " Duration left: " + duration);
     }
 }

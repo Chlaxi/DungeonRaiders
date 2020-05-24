@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StatusType { Bleed, Poison, HoT}
+public enum StatusType { Bleed, Poison, HoT, Buff}
 
 public abstract class StatusEffect{
 
-    protected ICharacter unit;
+
+    protected ICharacter target;
     public int duration;
     public Dice dice;
     public int modifier;
@@ -14,9 +15,17 @@ public abstract class StatusEffect{
     public EffectHitInfo hitInfo;
     //public bool canStack;
 
-    public StatusEffect(ICharacter unit, EffectHitInfo hitInfo, int duration, StatusType type, int modifier)
+    public StatusEffect(ICharacter target, int duration, int modifier)
     {
-        this.unit = unit;
+
+        this.target = target;
+        this.duration = duration;
+        this.modifier = modifier;
+    }
+
+    public StatusEffect(ICharacter target, EffectHitInfo hitInfo, int duration, StatusType type, int modifier)
+    {
+        this.target = target;
         this.duration = duration;
         this.modifier = modifier;
         this.type = type;
@@ -26,7 +35,7 @@ public abstract class StatusEffect{
 
     public StatusEffect(ICharacter unit, EffectHitInfo hitInfo, int duration, StatusType type, int modifier, Dice dice)
     {
-        this.unit = unit;
+        this.target = unit;
         this.duration = duration;
         this.dice = dice;
         this.modifier = modifier;
@@ -72,6 +81,9 @@ public abstract class StatusEffect{
 
     public override string ToString()
     {
+        if (dice == null)
+            return type + " Duration: " + duration;
+
         return type+ " Duration: " + duration + ". Dice: " + dice.ToString();
     }
 }

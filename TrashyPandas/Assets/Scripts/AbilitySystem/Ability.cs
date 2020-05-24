@@ -45,6 +45,7 @@ public struct HitRoll
 
 //TODO Revise ability system
 [CreateAssetMenu(menuName = "Abilities/New Ability")]
+public class Ability : ScriptableObject
 {
 
     public HitRoll rollInfo = new HitRoll();

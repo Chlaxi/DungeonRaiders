@@ -29,6 +29,8 @@ public class CharacterStats : MonoBehaviour {
 
 
     public int baseAttackBonus = 0;
+    [HideInInspector] public int attackBonusBuff = 0;
+    [HideInInspector] public int damageBonusBuff = 0;
     [SerializeField] private int armour = 0;
 
     private void Start()
@@ -131,6 +133,19 @@ public class CharacterStats : MonoBehaviour {
         charisma = values[5];
 
 
+    }
+
+    /// <summary>
+    /// returns the temporary damage bonus buff
+    /// </summary>
+    /// <returns></returns>
+    public int GetTempDamageBonus()
+    {
+        return damageBonusBuff;
+    }
+    public int GetAttackBonus()
+    {
+        return baseAttackBonus + attackBonusBuff;
     }
 
     public int MaxHealth

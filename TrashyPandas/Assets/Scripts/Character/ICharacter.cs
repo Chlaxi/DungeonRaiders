@@ -148,8 +148,14 @@ public abstract class ICharacter : MonoBehaviour
                 healthBar.ApplyHoT((HealOverTimeStatus)effect.statusEffect);
                 break;
 
+            case HitType.StatusEffect:
+                Debug.Log("Adding status effect " + effect.statusEffect.ToString() + " to " + name);
+                currentEffects.Add(effect.statusEffect);
+                Debug.Log("Status effectcount" + currentEffects.Count);
+                currentEffects[currentEffects.Count - 1].InitialEffect();
+                break;
 
-                //Status effect type
+            //Status effect type
             default:
                 Debug.Log("defaulting the ability effect");
                 OnHit(effect);

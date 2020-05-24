@@ -1001,7 +1001,7 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 1d851f1ea33f08a4f8bcf208e71e1928, type: 2}
   - {fileID: 11400000, guid: 37aa53c460148ce46861e67d8d110349, type: 2}
-  - {fileID: 11400000, guid: 3d01ff787fa05d84cb9ef38d40d0fe13, type: 2}
+  - {fileID: 11400000, guid: 7074974311ebf134dbb3f97d2cc602c9, type: 2}
   healthBar: {fileID: 114988012299639374}
   graphics: {fileID: 1881532133772180}
   hasHadTurn: 0

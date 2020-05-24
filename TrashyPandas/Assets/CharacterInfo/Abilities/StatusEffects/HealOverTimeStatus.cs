@@ -28,7 +28,7 @@ public class HealOverTimeStatus : StatusEffect {
         hitInfo.hitValue = dice.RollDice() + modifier;
         //Roll heal
         //Heal target
-        unit.OnEffectOverTime(this);
+        target.OnEffectOverTime(this);
         Debug.Log("Healed for" + hitInfo.hitValue+" Duration left: "+duration);
     }
 }
