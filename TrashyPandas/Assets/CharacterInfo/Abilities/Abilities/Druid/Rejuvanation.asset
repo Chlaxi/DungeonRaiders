@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,11 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rejuvanation
   icon: {fileID: 21300016, guid: e994282620304fd4fb7c6ed66e211a2f, type: 3}
-  animationTrigger: Punch
   description: Applies a heal over time on the target
-  basePower: 1
+  attackRollModifiers: []
+  Saves:
+    saveType: 0
+    halves: 0
   effects:
-  - {fileID: 11400000, guid: 4eb8b9517e46832499bbeae77e5f0ebe, type: 2}
-  behaviour: {fileID: 11400000, guid: 3b22ba2d7dc20694ca0d8e30a5dca9b7, type: 2}
+  - effect: {fileID: 11400000, guid: 4eb8b9517e46832499bbeae77e5f0ebe, type: 2}
+    statusEffect: {fileID: 11400000, guid: 53daacde9eec80c49afbdbc8ad283a7b, type: 2}
+    UseOwnAttackRoll: 0
+    dice:
+      dice: 1
+      power: 4
+      modifier: 0
+    canCrit: 1
+    damageRollModifiers:
+    - modifierType: 0
+      isApplied: 1
+      maxBonus: 5
+      multiplier: 0.5
+    duration: 3
+  guaranteedHit: 1
+  canCastOnSelf: 1
+  canCastOnAllies: 1
+  canTargetOpponents: 0
+  AoE: 0
+  requiredPosition: 01010101
+  attackRange: 00000000
+  alliedRange: 01010101
   ParticleEffect: {fileID: 0}
+  animationTrigger: Punch
   caster: {fileID: 0}

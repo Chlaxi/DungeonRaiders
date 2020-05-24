@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb604a11c2b67a4bb0a47f5f256ebac, type: 3}
+  m_Name: Restoration Status
+  m_EditorClassIdentifier: 
+  name: Restoration
+  statusIcon: {fileID: 21300004, guid: d3c3f32d8a9b91b4e90500db5068817a, type: 3}
+  description: Heals @dice + @modifier at the start of each turn.
+  duration: 3
+  dice:
+    dice: 1
+    power: 4
+    modifier: 0
+  modifier: 1
+  type: 2

@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 2.9778917
+  m_AspectRatio: 2.9761307
 --- !u!1 &475651965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3222,7 +3222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 2.9778917
+  m_AspectRatio: 2.9761307
 --- !u!114 &737068816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5600,7 +5600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -76.9, y: -19.06}
+  m_AnchoredPosition: {x: -76.9, y: -19.059998}
   m_SizeDelta: {x: 153.68579, y: 38.080673}
   m_Pivot: {x: 0.4999999, y: 0.49999997}
 --- !u!114 &1218394778
@@ -6109,6 +6109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6457d41f17850bd4bb1a57b9f8d69ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentUnit: {fileID: 0}
   combatSlots:
   - {fileID: 400347942}
   - {fileID: 1379739574}

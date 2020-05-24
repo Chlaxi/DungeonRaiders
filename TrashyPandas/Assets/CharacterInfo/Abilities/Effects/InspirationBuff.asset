@@ -16,8 +16,15 @@ MonoBehaviour:
     dice: 0
     power: 0
     modifier: 0
-  damageRollModifiers: []
-  duration: 0
-  abilityType: 0
-  hitType: 0
-  isStatusEffect: 0
+  damageRollModifiers:
+  - modifierType: 0
+    isApplied: 1
+    maxBonus: 0
+    multiplier: 2
+  duration: 7
+  abilityType: 4
+  hitType: 4
+  isStatusEffect: 1
+  statusName: Bardic Inspiration
+  statusImage: {fileID: 21300000, guid: 30727200c01b58f46b740188bc989a54, type: 3}
+  statusEffect: {fileID: 0}

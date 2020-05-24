@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Abilities/Status Effect/Buff")]
 public class BuffStatus : StatusEffect
 {
     public BuffStatus(ICharacter target, int duration, int modifier) : base(target, duration, modifier)
     {
-        type = StatusType.Buff;
     }
 
     public override void InitialEffect()

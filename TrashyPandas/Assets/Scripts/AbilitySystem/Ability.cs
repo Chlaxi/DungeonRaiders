@@ -7,6 +7,7 @@ using UnityEngine;
 public struct EffectInfo
 {
     public AbilityEffects effect;
+    public StatusEffect statusEffect;
     public bool UseOwnAttackRoll;
     public Dice dice;
     public bool canCrit;
@@ -119,7 +120,7 @@ public class Ability : ScriptableObject
         {
             EffectInfo effect = effects[i];
 
-            effect.effect.Initialize(effect.dice, effect.damageRollModifiers, effect.duration);
+            effect.effect.Initialize(effect.dice, effect.damageRollModifiers, effect.duration, effect.statusEffect);
          
 
             //Update check, so the first effect must either be guaranteed or will roll.

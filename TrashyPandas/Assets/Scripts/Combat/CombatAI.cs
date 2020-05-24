@@ -180,7 +180,6 @@ public class CombatAI : MonoBehaviour {
             //   throw new System.Exception("No ability!");
 
         }
-        Debug.Log("Success! Casting "+ability.name+" on "+target.name);
         yield return new WaitForSeconds(1);
         self.UseAbility(ability, target);
     }

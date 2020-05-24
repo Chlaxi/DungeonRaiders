@@ -46,18 +46,17 @@ public abstract class AbilityEffects : ScriptableObject{
     /// </summary>
     /// <param name="dice"></param>
     /// <param name="damageRollModifiers"></param>
-    public void Initialize(Dice dice, AbilityModifier[] damageRollModifiers, int duration=0)
+    public void Initialize(Dice dice, AbilityModifier[] damageRollModifiers, int duration=0, StatusEffect statusEffect=null)
     {
         this.dice = dice;
         this.damageRollModifiers = damageRollModifiers;
         this.duration = duration;
+        this.statusEffect = statusEffect;
         if(duration > 0)
         {
             isStatusEffect = true;
-            Debug.Log(name + " is a status effect that lasts for " + duration + " turns");
         }
-        Debug.Log("Dice set: " + this.dice.ToString());
-    }
+     }
 
     public virtual void InitialEffect()
     {
@@ -72,7 +71,6 @@ public abstract class AbilityEffects : ScriptableObject{
     /// <param name="target"></param>
     public virtual void ApplyEffect(Ability ability, ICharacter target)
     {
-        Debug.Log(name + " effect was applied");
         int effectValue = 0;
 
         effectValue = AbilityUtilities.EffectRoll(ability, this);

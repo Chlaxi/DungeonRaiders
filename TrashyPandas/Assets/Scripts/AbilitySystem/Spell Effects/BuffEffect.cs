@@ -16,7 +16,7 @@ public class BuffEffect : AbilityEffects
         if (modifier < 1)
             modifier = 1;
 
-        statusEffect = new BuffStatus(target, duration, modifier);
+        statusEffect.SetupStatus(target, duration, modifier);
         target.ApplyEffect(this);
     }
 

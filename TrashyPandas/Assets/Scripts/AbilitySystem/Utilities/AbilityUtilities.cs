@@ -127,7 +127,7 @@ public static class AbilityUtilities {
 //        Debug.Log("The ability power is " + value);
         if (value < 0) value = 0;
 
-        Debug.Log("You rolled " + dice.ToString() + " resulting in: " + value + " + " + damagebonus);
+//        Debug.Log("You rolled " + dice.ToString() + " resulting in: " + value + " + " + damagebonus);
         return value+ damagebonus;
     }
 

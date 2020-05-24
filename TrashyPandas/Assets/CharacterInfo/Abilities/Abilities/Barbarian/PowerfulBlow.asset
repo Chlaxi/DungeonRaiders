@@ -21,23 +21,26 @@ MonoBehaviour:
     halves: 0
   effects:
   - effect: {fileID: 11400000, guid: cda5eb0104f6705419ee4cc40a532269, type: 2}
+    statusEffect: {fileID: 0}
     UseOwnAttackRoll: 0
     dice:
       dice: 1
       power: 8
+      modifier: 0
     canCrit: 1
     damageRollModifiers:
     - modifierType: 1
       isApplied: 1
       maxBonus: 0
       multiplier: 1.5
+    duration: 0
   guaranteedHit: 0
   canCastOnSelf: 0
   canCastOnAllies: 0
   canTargetOpponents: 1
   AoE: 0
-  requiredPosition: 00000000
-  attackRange: 00000000
+  requiredPosition: 01010000
+  attackRange: 01010000
   alliedRange: 00000000
   ParticleEffect: {fileID: 0}
   animationTrigger: 

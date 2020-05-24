@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,10 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: New ability
   icon: {fileID: 0}
-  animationTrigger: 
   description: 
-  basePower: 0
-  effects: []
-  behaviour: {fileID: 0}
+  attackRollModifiers: []
+  Saves:
+    saveType: 0
+    halves: 0
+  effects:
+  - effect: {fileID: 0}
+    statusEffect: {fileID: 0}
+    UseOwnAttackRoll: 0
+    dice:
+      dice: 0
+      power: 0
+      modifier: 0
+    canCrit: 0
+    damageRollModifiers: []
+    duration: 0
+  guaranteedHit: 0
+  canCastOnSelf: 0
+  canCastOnAllies: 0
+  canTargetOpponents: 1
+  AoE: 0
+  requiredPosition: 00000000
+  attackRange: 00000000
+  alliedRange: 00000000
   ParticleEffect: {fileID: 0}
+  animationTrigger: 
   caster: {fileID: 0}

@@ -12,22 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf35324003a63f419b0639016581163, type: 3}
   m_Name: Bardic Inspiration
   m_EditorClassIdentifier: 
-  name: New ability
-  icon: {fileID: 0}
-  description: 
+  name: Bardic Inspiration
+  icon: {fileID: 21300004, guid: e994282620304fd4fb7c6ed66e211a2f, type: 3}
+  description: Grants a bonus to the target's attack rolls and damage rolls.
   attackRollModifiers: []
   Saves:
     saveType: 0
     halves: 0
-  effects: []
-  guaranteedHit: 0
-  canCastOnSelf: 0
-  canCastOnAllies: 0
-  canTargetOpponents: 1
+  effects:
+  - effect: {fileID: 11400000, guid: a1d8c55ef97f46e4f9070799bd6a8b49, type: 2}
+    statusEffect: {fileID: 11400000, guid: b74d44dda3ef74a48a18737f429eff33, type: 2}
+    UseOwnAttackRoll: 0
+    dice:
+      dice: 0
+      power: 0
+      modifier: 0
+    canCrit: 0
+    damageRollModifiers:
+    - modifierType: 0
+      isApplied: 1
+      maxBonus: 0
+      multiplier: 2
+    duration: 3
+  guaranteedHit: 1
+  canCastOnSelf: 1
+  canCastOnAllies: 1
+  canTargetOpponents: 0
   AoE: 0
-  requiredPosition: 00000000
+  requiredPosition: 00010101
   attackRange: 00000000
-  alliedRange: 00000000
+  alliedRange: 01010101
   ParticleEffect: {fileID: 0}
   animationTrigger: 
   caster: {fileID: 0}

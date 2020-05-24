@@ -9,6 +9,9 @@ public class StatusIcon : MonoBehaviour
     LayoutElement layout;
     Image image;
 
+    public bool isActive = false;
+
+    private string tooltip;
     private int value;
     private int duration;
 
@@ -18,31 +21,35 @@ public class StatusIcon : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    public void SetInfo(StatusEffect info)
+    public void SetInfo(Status info)
     {
-        Debug.Log(info.ToString());
-        value = (int)info.hitInfo.hitValue;
-        duration = (int)info.duration;
+
+        //duration = (int)info.duration;
+        tooltip = info.GetDescription();
     }
 
-    public void ShowIcon(bool show)
+    public void ShowIcon(Status info)
     {
-        if (show)
-        {
-            layout.ignoreLayout = false;
-            image.enabled = true;
-        }
-        else
-        {
-            layout.ignoreLayout = true;
-            image.enabled = false;
-        }
+
+        layout.ignoreLayout = false;
+        image.enabled = true;
+        
+        image.sprite = info.GetEffect().statusIcon;
+        
+        isActive = true;
+        SetInfo(info);
+    }
+
+    public void HideIcon()
+    {
+        layout.ignoreLayout = true;
+        image.enabled = false;
+        isActive = false;
     }
 
     public void ShowTooltip()
     {
-        //Get a list of values and duration from the first corrosponding list.
-        Debug.Log(gameObject.name + " has a value of " + value + " and lasts for " + duration + " turns");
+        Debug.Log(tooltip);
     }
 
 }

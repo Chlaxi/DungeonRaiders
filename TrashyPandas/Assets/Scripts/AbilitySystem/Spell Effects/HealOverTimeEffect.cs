@@ -11,7 +11,8 @@ public class HealOverTimeEffect : AbilityEffects {
 
         effectValue = AbilityUtilities.EffectRoll(ability, this);
 
-        statusEffect = new HealOverTimeStatus(target, hitInfo, duration, StatusType.HoT, AbilityUtilities.GetDamageBonus(this, ability.caster), dice);
+        statusEffect.SetupStatus(target, hitInfo, duration, AbilityUtilities.GetDamageBonus(this, ability.caster), dice);
+        //new HealOverTimeStatus(target, hitInfo, duration, StatusType.HoT, AbilityUtilities.GetDamageBonus(this, ability.caster), dice);
         Debug.Log("Status effect to apply: " + statusEffect+" ("+statusEffect.type+")");
         target.ApplyEffect(this);
     }

@@ -127,6 +127,8 @@ public class HealthBarScript : MonoBehaviour {
 
         int value = effect.hitInfo.hitValue;
 
+        //This is where the info should update?
+
         if(effect.type == StatusType.HoT)
         {
             ManageHots();
@@ -158,20 +160,29 @@ public class HealthBarScript : MonoBehaviour {
         }
     }
 
+    public StatusIcon AddNewStatus(StatusEffect status)
+    {
+        return CBT.EnableIconDynamically(status);
+        //Store index, so it can be updated and hidden.
+    }
+
+    public void UpdateStatusIndex(int oldIndex, int newIndex)
+    {
+        //Set icon index to new index
+    }
+
     public void ApplyHoT(HealOverTimeStatus status)
     {
         Debug.Log("HoT info: Damage: " + status.dice + " Effect duration: " + status.duration);
         hots.Add(status);
-        hotIcon.SetInfo(hots[0]);
-        hotIcon.ShowIcon(true);
+        AddNewStatus(status);
     }
 
     public void ApplyBleed(BleedStatus status)
     {
         Debug.Log("Bleed info: Damage: " + status.dice + " Effect duration: " + status.duration);
         bleeds.Add(status);
-        bleedIcon.SetInfo(bleeds[0]);
-        bleedIcon.ShowIcon(true);
+        AddNewStatus(status);
 
     }
 
@@ -181,10 +192,10 @@ public class HealthBarScript : MonoBehaviour {
         int bleedCount = 0;
         for (int i = 0; i < unit.currentEffects.Count; i++)
         {
-            if(unit.currentEffects[i].type == StatusType.Bleed)
+            if(unit.currentEffects[i].GetEffect().type == StatusType.Bleed)
             {
           
-                bleedIcon.SetInfo(unit.currentEffects[i]);
+                //bleedIcon.SetInfo(unit.currentEffects[i]);
                 if (unit.currentEffects[i].duration > 0)
                     bleedCount++;
             }
@@ -192,7 +203,7 @@ public class HealthBarScript : MonoBehaviour {
 
         isBleeding = (bleedCount > 0) ? true : false;
 
-        bleedIcon.ShowIcon(isBleeding);
+       // bleedIcon.ShowIcon(isBleeding);
     }
 
     private void ManageHots()
@@ -200,19 +211,18 @@ public class HealthBarScript : MonoBehaviour {
         int hotsCount = 0;
         for (int i = 0; i < unit.currentEffects.Count; i++)
         {
-            if (unit.currentEffects[i].type == StatusType.HoT)
+            if (unit.currentEffects[i].GetEffect().type == StatusType.HoT)
             {
-                hotIcon.SetInfo(unit.currentEffects[i]);
+                //hotIcon.SetInfo(unit.currentEffects[i]);
                 if(unit.currentEffects[i].duration>0)
                     hotsCount++;
             }
         }
 
-        Debug.Log(hotsCount);
         hasHot = (hotsCount > 0) ? true : false;
         
 
-        hotIcon.ShowIcon(hasHot);
+       // hotIcon.ShowIcon(hasHot);
     }
 
 }

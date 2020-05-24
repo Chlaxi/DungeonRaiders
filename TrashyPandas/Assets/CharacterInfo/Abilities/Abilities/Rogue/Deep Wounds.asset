@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -13,12 +14,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Deep Wounds
   icon: {fileID: 21300012, guid: e994282620304fd4fb7c6ed66e211a2f, type: 3}
-  animationTrigger: Punch
   description: Stab at your foes weak points, making them bleed
-  basePower: 1
+  attackRollModifiers:
+  - modifierType: 2
+    isApplied: 1
+    maxBonus: 0
+    multiplier: 1
+  Saves:
+    saveType: 0
+    halves: 0
   effects:
-  - {fileID: 11400000, guid: cda5eb0104f6705419ee4cc40a532269, type: 2}
-  - {fileID: 11400000, guid: 17cbdf48ea26efd4880c1d4af17688f5, type: 2}
-  behaviour: {fileID: 11400000, guid: a05f31f2fb7ea8e4dbc39f6e1111c0f9, type: 2}
+  - effect: {fileID: 11400000, guid: c9aa5f8bfaa79cc419356e130cf1cd38, type: 2}
+    statusEffect: {fileID: 0}
+    UseOwnAttackRoll: 0
+    dice:
+      dice: 1
+      power: 6
+      modifier: 0
+    canCrit: 1
+    damageRollModifiers:
+    - modifierType: 1
+      isApplied: 1
+      maxBonus: 0
+      multiplier: 0.5
+    duration: 0
+  - effect: {fileID: 11400000, guid: 17cbdf48ea26efd4880c1d4af17688f5, type: 2}
+    statusEffect: {fileID: 11400000, guid: 8459dafd87bf38e4384d0e33939b38bd, type: 2}
+    UseOwnAttackRoll: 0
+    dice:
+      dice: 1
+      power: 3
+      modifier: 0
+    canCrit: 0
+    damageRollModifiers:
+    - modifierType: 0
+      isApplied: 1
+      maxBonus: 0
+      multiplier: 0.5
+    duration: 3
+  guaranteedHit: 0
+  canCastOnSelf: 0
+  canCastOnAllies: 0
+  canTargetOpponents: 1
+  AoE: 0
+  requiredPosition: 01010000
+  attackRange: 01010000
+  alliedRange: 00000000
   ParticleEffect: {fileID: 0}
+  animationTrigger: Punch
   caster: {fileID: 0}

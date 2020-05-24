@@ -26,7 +26,7 @@ public abstract class ICharacter : MonoBehaviour
     public GameObject graphics;
     protected Animator animator;
 
-    public List<StatusEffect> currentEffects = new List<StatusEffect>();
+    public List<Status> currentEffects = new List<Status>();
 
     private Ability currentAbility;
 
@@ -96,6 +96,7 @@ public abstract class ICharacter : MonoBehaviour
     }
 
     //TODO Rework this, so it makes more sense
+    //This is where the AC should be calculated?
     public void OnHit(AbilityEffects effect)
     {
         bool wasHit = effect.hitInfo.isHit;
@@ -103,6 +104,7 @@ public abstract class ICharacter : MonoBehaviour
         stats.ModifyHealth(effect.hitInfo);
     }
 
+    //Perform Saveing throws here?
     public void OnEffectOverTime(StatusEffect status)
     {
         healthBar.OnEffectOverTime(status);
@@ -129,30 +131,33 @@ public abstract class ICharacter : MonoBehaviour
                 break;
 
             case HitType.DoT:
-                Debug.Log("Adding status effect to " + name);
-                currentEffects.Add(effect.statusEffect);
-                Debug.Log("Status effectcount" + currentEffects.Count);
-                currentEffects[currentEffects.Count-1].InitialEffect();
+
+                AddNewStatusEffect(effect.statusEffect);
+
+            //    currentEffects[currentEffects.Count-1].InitialEffect();
 
                 //Check type
                 healthBar.ApplyBleed((BleedStatus)effect.statusEffect);
                 break;
 
             case HitType.HoT:
-                Debug.Log("Adding status effect "+effect.statusEffect.ToString()+" to " + name);
-                currentEffects.Add(effect.statusEffect);
-                Debug.Log("Status effectcount" + currentEffects.Count);
-                currentEffects[currentEffects.Count - 1].InitialEffect();
+
+                AddNewStatusEffect(effect.statusEffect);
+
+               // currentEffects[currentEffects.Count - 1].InitialEffect();
 
                 //Check type
                 healthBar.ApplyHoT((HealOverTimeStatus)effect.statusEffect);
                 break;
 
             case HitType.StatusEffect:
-                Debug.Log("Adding status effect " + effect.statusEffect.ToString() + " to " + name);
-                currentEffects.Add(effect.statusEffect);
-                Debug.Log("Status effectcount" + currentEffects.Count);
-                currentEffects[currentEffects.Count - 1].InitialEffect();
+
+
+                AddNewStatusEffect(effect.statusEffect);
+
+
+
+             //   currentEffects[currentEffects.Count - 1].InitialEffect();
                 break;
 
             //Status effect type
@@ -165,6 +170,15 @@ public abstract class ICharacter : MonoBehaviour
         }
 
         
+
+    }
+
+    public void AddNewStatusEffect(StatusEffect effect)
+    {
+
+        ;
+        Status relation = new Status(effect, healthBar.AddNewStatus(effect));
+        currentEffects.Add(relation);
 
     }
 
@@ -228,10 +242,11 @@ public abstract class ICharacter : MonoBehaviour
         for (int i = 0; i < currentEffects.Count; i++)
         {
             
-            StatusEffect effect = currentEffects[i];
+            Status status = currentEffects[i];
 
-            effect.ApplyEffect();
-            if (effect.IsFinished()) currentEffects.Remove(effect);
+            status.ApplyEffect();
+            //Necessary?
+            if (status.IsFinished()) currentEffects.Remove(status);
         }
     }
 

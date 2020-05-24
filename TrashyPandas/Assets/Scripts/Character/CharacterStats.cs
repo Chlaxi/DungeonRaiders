@@ -88,10 +88,13 @@ public class CharacterStats : MonoBehaviour {
     {
         if (!hitInfo.isHit) return;
 
-        if (hitInfo.hitType == HitType.Heal) currentHealth += hitInfo.hitValue;
-
-        if (hitInfo.hitType == HitType.Hit) { 
-                currentHealth -= hitInfo.hitValue;
+        if (hitInfo.hitType == HitType.Heal)
+        {
+            currentHealth += hitInfo.hitValue;
+        }
+        
+        if (hitInfo.hitType == HitType.Hit) {
+            currentHealth -= hitInfo.hitValue;
         }
 
         if (CurrentHealth > MaxHealth)
