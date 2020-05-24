@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// AbilityType represents the type of the ability. Is it a physical attack? A ranged? etc.
 /// </summary>
@@ -27,18 +26,53 @@ public struct EffectHitInfo
 
 }
 
+[System.Serializable]
 public abstract class AbilityEffects : ScriptableObject{
 
-    public Dice dice;
-    public AbilityModifier[] damageRollModifiers;
+    
+    //These are set on the ability
+    [HideInInspector] public Dice dice;
+    [HideInInspector] public AbilityModifier[] damageRollModifiers;
+    [HideInInspector] public int duration;
 
     public AbilityType abilityType;
     public HitType hitType;
     public EffectHitInfo hitInfo;
+    public bool isStatusEffect = false;
     public StatusEffect statusEffect;
 
+    /// <summary>
+    /// Used to set the damage modifiers and dice.
+    /// </summary>
+    /// <param name="dice"></param>
+    /// <param name="damageRollModifiers"></param>
+    public void Initialize(Dice dice, AbilityModifier[] damageRollModifiers, int duration=0)
+    {
+        this.dice = dice;
+        this.damageRollModifiers = damageRollModifiers;
+        this.duration = duration;
+        if(duration > 0)
+        {
+            isStatusEffect = true;
+            Debug.Log(name + " is a status effect that lasts for " + duration + " turns");
+        }
+        Debug.Log("Dice set: " + this.dice.ToString());
+    }
+
+    public virtual void InitialEffect()
+    {
+        Debug.Log("Initial effect");
+        //if(unit.stats.BleedResistance) EndEffect();
+    }
+
+    /// <summary>
+    /// The effect
+    /// </summary>
+    /// <param name="ability"></param>
+    /// <param name="target"></param>
     public virtual void ApplyEffect(Ability ability, ICharacter target)
     {
+        Debug.Log(name + " effect was applied");
         int effectValue = 0;
 
         effectValue = AbilityUtilities.EffectRoll(ability, this);
@@ -47,8 +81,9 @@ public abstract class AbilityEffects : ScriptableObject{
         hitInfo = new EffectHitInfo(effectValue, ability.rollInfo, hitType);
 
         target.ApplyEffect(this);
+        
     }
-    
+
 
     /*
     //TODO revise crit with crit chance

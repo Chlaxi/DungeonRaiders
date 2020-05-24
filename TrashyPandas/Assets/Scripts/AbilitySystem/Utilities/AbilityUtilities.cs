@@ -10,21 +10,37 @@ public class Dice
 {
     public int dice;
     public int power;
-
+    public int modifier;
+    
     /// <summary>
     /// Defines a new dice.
     /// </summary>
     /// <param name="dice">The amount of dice</param>
     /// <param name="power">The power of the dice</param>
-    public Dice(int dice, int power)
+    public Dice(int dice, int power, int modifier=0)
     {
         this.dice = dice;
         this.power = power;
+        this.modifier = modifier;
     }
 
     public override string ToString()
     {
         return dice + "d" + power;
+    }
+
+    /// <summary>
+    /// Rolls the dice and returns the result. Note, the modifier is not applied
+    /// </summary>
+    /// <returns>Returns the result of the dice roll</returns>
+    public int RollDice()
+    {
+        int total = 0;
+        for (int i = 0; i < dice; i++)
+        {
+            total += Random.Range(1, power + 1);
+        }
+        return total;
     }
 }
 
@@ -99,10 +115,7 @@ public static class AbilityUtilities {
         int value = 0;
         Dice dice = effect.dice;
 
-        for (int i = 0; i < dice.dice; i++)
-        {
-            value += Random.Range(1, dice.power);
-        }
+        value = dice.RollDice();
 
         int[] casterStats = ability.caster.stats.GetModifiersFromArray();
         int damagebonus=0;

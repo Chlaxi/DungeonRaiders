@@ -103,10 +103,10 @@ public abstract class ICharacter : MonoBehaviour
         stats.ModifyHealth(effect.hitInfo);
     }
 
-    public void OnEffectOverTime(AbilityEffects effect)
+    public void OnEffectOverTime(StatusEffect status)
     {
-        healthBar.OnEffectOverTime(effect);
-        stats.ModifyHealth(effect.hitInfo);
+        healthBar.OnEffectOverTime(status);
+        stats.ModifyHealth(status.hitInfo);
     }
 
     /// <summary>
@@ -139,7 +139,7 @@ public abstract class ICharacter : MonoBehaviour
                 break;
 
             case HitType.HoT:
-                Debug.Log("Adding status effect to " + name);
+                Debug.Log("Adding status effect "+effect.statusEffect.ToString()+" to " + name);
                 currentEffects.Add(effect.statusEffect);
                 Debug.Log("Status effectcount" + currentEffects.Count);
                 currentEffects[currentEffects.Count - 1].InitialEffect();

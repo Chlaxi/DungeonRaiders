@@ -121,26 +121,26 @@ public class HealthBarScript : MonoBehaviour {
     /// Applies an effect over time
     /// </summary>
     /// <param name="effect"></param>
-    public void OnEffectOverTime(AbilityEffects effect)
+    public void OnEffectOverTime(StatusEffect effect)
     {
-        Debug.Log("Effect over time of type "+effect.abilityType+" HitType="+effect.hitType);
+        //Debug.Log("Effect over time of type "+effect.abilityType+" HitType="+effect.hitType);
 
         int value = effect.hitInfo.hitValue;
 
-        if(effect.hitType == HitType.Heal)
+        if(effect.type == StatusType.HoT)
         {
             ManageHots();
             CBT.OnHoT(value);
             return;
         }
 
-        switch (effect.abilityType)
+        switch (effect.type)
         {
-            case AbilityType.Bleed:
+            case StatusType.Bleed:
                 ManageBleeds();
                 CBT.OnBleed(value);
                 break;
-            case AbilityType.Poison:
+            case StatusType.Poison:
                 //CBT.OnPosion(value);
                 break;
         }
@@ -160,7 +160,7 @@ public class HealthBarScript : MonoBehaviour {
 
     public void ApplyHoT(HealOverTimeStatus status)
     {
-        Debug.Log("HoT info: Damage: " + status.power + " Effect: " + status.duration);
+        Debug.Log("HoT info: Damage: " + status.dice + " Effect duration: " + status.duration);
         hots.Add(status);
         hotIcon.SetInfo(hots[0]);
         hotIcon.ShowIcon(true);
@@ -168,7 +168,7 @@ public class HealthBarScript : MonoBehaviour {
 
     public void ApplyBleed(BleedStatus status)
     {
-        Debug.Log("Bleed info: Damage: " + status.power + " Effect: " + status.duration);
+        Debug.Log("Bleed info: Damage: " + status.dice + " Effect duration: " + status.duration);
         bleeds.Add(status);
         bleedIcon.SetInfo(bleeds[0]);
         bleedIcon.ShowIcon(true);
@@ -202,7 +202,6 @@ public class HealthBarScript : MonoBehaviour {
         {
             if (unit.currentEffects[i].type == StatusType.HoT)
             {
-                Debug.Log("Found HoT!");
                 hotIcon.SetInfo(unit.currentEffects[i]);
                 if(unit.currentEffects[i].duration>0)
                     hotsCount++;

@@ -7,12 +7,12 @@ public class BleedStatus : StatusEffect
 {
     private AbilityEffects effect;
 
-    public BleedStatus(ICharacter unit, int duration, StatusType type, int dot): base(unit, duration, type)
+    public BleedStatus(ICharacter unit, EffectHitInfo hitInfo, int duration, StatusType type, int modifier, Dice dice): base(unit, hitInfo, duration, type, modifier)
     {
         
-        power = dot;
+        this.dice = dice;
         effect = new BleedEffect();
-        effect.hitInfo = new EffectHitInfo(dot, new HitRoll(true, false), HitType.Hit);
+        this.hitInfo = new EffectHitInfo(0, new HitRoll(true, false), HitType.Hit);
         effect.abilityType = AbilityType.Bleed;
     }
 
@@ -24,9 +24,12 @@ public class BleedStatus : StatusEffect
 
     public override void ApplyEffect()
     {
-        Debug.Log("Bleed damage!" + effect.hitInfo.hitValue);
-        base.ApplyEffect();  
-        unit.OnEffectOverTime(effect);
 
+        base.ApplyEffect();
+        //Roll damage
+        hitInfo.hitValue = dice.RollDice() + modifier;
+        //Deal damage
+        unit.OnEffectOverTime(this);
+        Debug.Log("Bleed damage!" + hitInfo.hitValue + " Duration left: " + duration);
     }
 }

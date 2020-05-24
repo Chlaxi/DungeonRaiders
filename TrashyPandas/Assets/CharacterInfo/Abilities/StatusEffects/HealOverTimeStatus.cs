@@ -6,12 +6,12 @@ public class HealOverTimeStatus : StatusEffect {
 
     private AbilityEffects effect;
 
-    public HealOverTimeStatus(ICharacter unit, int duration, StatusType type, int hot) : base(unit, duration, type)
+    public HealOverTimeStatus(ICharacter unit, EffectHitInfo hitInfo, int duration, StatusType type, int modifier, Dice dice) : base(unit, hitInfo, duration, type, modifier)
     {
 
-        power = hot;
+        this.dice = dice;
         effect = new HealOverTimeEffect();
-        effect.hitInfo = new EffectHitInfo(hot, new HitRoll(true, false), HitType.Heal);
+        this.hitInfo = new EffectHitInfo(0, new HitRoll(true, false), HitType.Heal);
         effect.hitType = HitType.Heal;
         effect.abilityType = AbilityType.Nature;
     }
@@ -23,9 +23,12 @@ public class HealOverTimeStatus : StatusEffect {
 
     public override void ApplyEffect()
     {
-        Debug.Log("Bleed damage!" + effect.hitInfo.hitValue);
+        
         base.ApplyEffect();
-        unit.OnEffectOverTime(effect);
-
+        hitInfo.hitValue = dice.RollDice() + modifier;
+        //Roll heal
+        //Heal target
+        unit.OnEffectOverTime(this);
+        Debug.Log("Healed for" + hitInfo.hitValue+" Duration left: "+duration);
     }
 }

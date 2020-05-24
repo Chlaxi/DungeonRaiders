@@ -8,8 +8,14 @@ public struct EffectInfo
 {
     public AbilityEffects effect;
     public bool UseOwnAttackRoll;
+    public Dice dice;
     public bool canCrit;
-
+    
+    [Tooltip("A list of modifiers, that can increase the damage roll, such as strength, dexterity, or caster level")]
+    public AbilityModifier[] damageRollModifiers;
+    
+    [Tooltip("Defines whether the effect applies a status effect or not. If set to 0, it will only be a direct hit effect")]
+    public int duration;
 }
 
 /// <summary>
@@ -39,8 +45,7 @@ public struct HitRoll
 
 //TODO Revise ability system
 [CreateAssetMenu(menuName = "Abilities/New Ability")]
-public class Ability : ScriptableObject {
-
+{
 
     public HitRoll rollInfo = new HitRoll();
 
@@ -113,7 +118,7 @@ public class Ability : ScriptableObject {
         {
             EffectInfo effect = effects[i];
 
-
+            effect.effect.Initialize(effect.dice, effect.damageRollModifiers, effect.duration);
          
 
             //Update check, so the first effect must either be guaranteed or will roll.

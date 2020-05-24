@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf35324003a63f419b0639016581163, type: 3}
   m_Name: PowerfulBlow
   m_EditorClassIdentifier: 
-  name: New ability
-  icon: {fileID: 0}
-  description: 
+  name: Powerful Blow
+  icon: {fileID: 21300008, guid: e994282620304fd4fb7c6ed66e211a2f, type: 3}
+  description: A powerful blow, using your full strength.
   attackRollModifiers: []
   Saves:
     saveType: 0
     halves: 0
-  effects: []
-  canCrit: 0
+  effects:
+  - effect: {fileID: 11400000, guid: cda5eb0104f6705419ee4cc40a532269, type: 2}
+    UseOwnAttackRoll: 0
+    dice:
+      dice: 1
+      power: 8
+    canCrit: 1
+    damageRollModifiers:
+    - modifierType: 1
+      isApplied: 1
+      maxBonus: 0
+      multiplier: 1.5
   guaranteedHit: 0
   canCastOnSelf: 0
   canCastOnAllies: 0

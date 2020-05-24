@@ -21,7 +21,7 @@ public class StatusIcon : MonoBehaviour
     public void SetInfo(StatusEffect info)
     {
         Debug.Log(info.ToString());
-        value = (int)info.power;
+        value = (int)info.hitInfo.hitValue;
         duration = (int)info.duration;
     }
 

@@ -8,24 +8,30 @@ public abstract class StatusEffect{
 
     protected ICharacter unit;
     public int duration;
-    public int power;
+    public Dice dice;
+    public int modifier;
     public StatusType type;
+    public EffectHitInfo hitInfo;
     //public bool canStack;
 
-    public StatusEffect(ICharacter unit, int duration, StatusType type)
+    public StatusEffect(ICharacter unit, EffectHitInfo hitInfo, int duration, StatusType type, int modifier)
     {
         this.unit = unit;
         this.duration = duration;
+        this.modifier = modifier;
         this.type = type;
+        this.hitInfo = hitInfo;
     }
 
 
-    public StatusEffect(ICharacter unit, int duration, StatusType type, int power)
+    public StatusEffect(ICharacter unit, EffectHitInfo hitInfo, int duration, StatusType type, int modifier, Dice dice)
     {
         this.unit = unit;
         this.duration = duration;
-        this.power = power;
+        this.dice = dice;
+        this.modifier = modifier;
         this.type = type;
+        this.hitInfo = hitInfo;
     }
 
     /// <summary>
@@ -44,6 +50,10 @@ public abstract class StatusEffect{
         duration--;
     }
 
+    /// <summary>
+    /// Checks whether the effect is finished. Once the duration runs out, EndEffect is called.
+    /// </summary>
+    /// <returns>Returns whether there's still duration left on the ability</returns>
     public bool IsFinished()
     {
         if (duration > 0) return false;
@@ -52,10 +62,16 @@ public abstract class StatusEffect{
         return true;
     }
 
+    /// <summary>
+    /// Is called when the effect ends.
+    /// </summary>
     public virtual void EndEffect()
     {
         Debug.Log("Effect removed");   
     }
 
-
+    public override string ToString()
+    {
+        return type+ " Duration: " + duration + ". Dice: " + dice.ToString();
+    }
 }
