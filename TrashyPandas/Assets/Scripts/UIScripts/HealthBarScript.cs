@@ -19,13 +19,12 @@ public class HealthBarScript : MonoBehaviour {
     public Image turnImage;
 
     private bool isBleeding = false;
-    [SerializeField] private StatusIcon bleedIcon;
 
     private bool hasHot = false;
-    [SerializeField] private StatusIcon hotIcon;
-
-
-    [SerializeField] private StatusIcon poisonIcon;
+    [SerializeField] private StatusToolTip toolTip;
+    public Transform buffBar;
+    [SerializeField] private GameObject StatusIconPrefab;
+    public List<StatusIcon> buffIcons = new List<StatusIcon>();
 
     [SerializeField] private Slider slider;
 
@@ -53,6 +52,10 @@ public class HealthBarScript : MonoBehaviour {
         canvasGroup = GetComponent<CanvasGroup>();
         SetPotentialTargetBorder(false);
         HideBar(false);
+        if (GetComponent<Canvas>().worldCamera == null)
+        {
+            GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
     }
 
     public void StartTurn()
@@ -162,9 +165,33 @@ public class HealthBarScript : MonoBehaviour {
 
     public StatusIcon AddNewStatus(StatusEffect status)
     {
-        return CBT.EnableIconDynamically(status);
+        for (int i = 0; i < buffIcons.Count; i++)
+        {
+            if (buffIcons[i].isActive)
+                continue;
+
+            //buffIcons[i].ShowIcon(effect);
+            return buffIcons[i];
+        }
+
+        StatusIcon statusIcon = Instantiate(StatusIconPrefab, buffBar).GetComponent<StatusIcon>();
+        buffIcons.Add(statusIcon);
+        return statusIcon;
         //Store index, so it can be updated and hidden.
     }
+
+    public void RemoveIconDynamically(Status status)
+    {
+        //Get the actual index.
+        int index = 0;
+        if (index < 0 || index > buffIcons.Count)
+            return;
+
+        buffIcons[index].HideIcon();
+    }
+
+
+
 
     public void UpdateStatusIndex(int oldIndex, int newIndex)
     {
@@ -175,14 +202,14 @@ public class HealthBarScript : MonoBehaviour {
     {
         Debug.Log("HoT info: Damage: " + status.dice + " Effect duration: " + status.duration);
         hots.Add(status);
-        AddNewStatus(status);
+        //AddNewStatus(status);
     }
 
     public void ApplyBleed(BleedStatus status)
     {
         Debug.Log("Bleed info: Damage: " + status.dice + " Effect duration: " + status.duration);
         bleeds.Add(status);
-        AddNewStatus(status);
+       // AddNewStatus(status);
 
     }
 
@@ -223,6 +250,19 @@ public class HealthBarScript : MonoBehaviour {
         
 
        // hotIcon.ShowIcon(hasHot);
+    }
+
+    public void ShowTooltip(StatusIcon icon)
+    {
+        if (toolTip.SetupTooltip(icon))
+            if (toolTip.isHidden)
+                toolTip.ShowTooltip();
+    }
+
+    public void HideTooltip()
+    {
+        if (toolTip.isHidden) return;
+        toolTip.HideTooltip();
     }
 
 }

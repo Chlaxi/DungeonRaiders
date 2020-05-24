@@ -8,10 +8,10 @@ public class StatusIcon : MonoBehaviour
 
     LayoutElement layout;
     Image image;
-
+    public HealthBarScript healthBar;
     public bool isActive = false;
 
-    private string tooltip;
+    private Status status;
     private int value;
     private int duration;
 
@@ -19,17 +19,22 @@ public class StatusIcon : MonoBehaviour
     {
         layout = GetComponent<LayoutElement>();
         image = GetComponent<Image>();
+        healthBar = GetComponentInParent<HealthBarScript>();
     }
 
     public void SetInfo(Status info)
     {
 
         //duration = (int)info.duration;
-        tooltip = info.GetDescription();
+        status = info;
     }
 
     public void ShowIcon(Status info)
     {
+        if(layout==null)
+            layout = GetComponent<LayoutElement>();
+        if(image==null)
+            image = GetComponent<Image>();
 
         layout.ignoreLayout = false;
         image.enabled = true;
@@ -47,9 +52,28 @@ public class StatusIcon : MonoBehaviour
         isActive = false;
     }
 
-    public void ShowTooltip()
+    public string GetDesription()
     {
-        Debug.Log(tooltip);
+        return status.GetDescription();
+
     }
+
+    public string GetName()
+    {
+        return status.name;
+    }
+
+    public void OnPointerEnter()
+    {
+
+        healthBar.ShowTooltip(this);
+    }
+
+    public void OnPointerLeave()
+    {
+        healthBar.HideTooltip();
+    }
+
+
 
 }

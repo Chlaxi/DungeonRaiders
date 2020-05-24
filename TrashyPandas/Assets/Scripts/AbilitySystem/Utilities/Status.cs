@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Status
 {
-
+    public new string name;
     public int duration;
     public Dice dice;
     public int modifier;
@@ -15,6 +15,7 @@ public class Status
 
     public Status(StatusEffect effect, StatusIcon icon)
     {
+        name = effect.name;
         duration = effect.duration;
         dice = effect.dice;
         modifier = effect.modifier;
@@ -32,12 +33,6 @@ public class Status
         {
             Debug.LogError("effect was null");
             statusIcon.HideIcon();
-            return;
-        }
-
-        if (statusIcon == null)
-        {
-            Debug.LogWarning("No icon setup for " + effect.name);
             return;
         }
 
@@ -60,6 +55,7 @@ public class Status
         if (statusIcon == null)
         {
             Debug.LogError("No icon setup for " + effect.name);
+            //SetIcon(CBT.EnableIconDynamically(effect));
             return;
         }
         statusIcon.SetInfo(this);
@@ -92,7 +88,26 @@ public class Status
 
     public string GetDescription()
     {
+        string newDescription = description;
+        newDescription = newDescription.Replace("@dice", dice.ToString());
+        newDescription = newDescription.Replace("@modifier", modifier.ToString());
+        newDescription = newDescription.Replace("@duration", duration.ToString());
 
-        return description + " \n Time left: "+duration;
+        return newDescription + " \nTime left: "+duration;
+    }
+
+    public void SetIcon(StatusIcon icon)
+    {
+        if (icon == null)
+            return;
+
+        if (statusIcon != null)
+        {
+            //There's already an icon. Remove the one we have. Before setting a new.
+            return;
+        }
+
+        statusIcon = icon;
+        statusIcon.ShowIcon(this);
     }
 }

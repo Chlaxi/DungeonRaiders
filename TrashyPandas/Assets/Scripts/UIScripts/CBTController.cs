@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public class CBTController : MonoBehaviour {
@@ -12,8 +13,8 @@ public class CBTController : MonoBehaviour {
     public Color[] CBTColor = new Color[1];
     public Image CBTTypeIcon;
     public Text CBTCrit;
-    public Transform buffBar;
-    public StatusIcon[] buffIcons;
+   
+
 
     private void Start()
     {
@@ -81,35 +82,7 @@ public class CBTController : MonoBehaviour {
 
     }
 
-    public StatusIcon EnableIconDynamically(StatusEffect effect)
-    {
-        int buffIndex = -1;
-        for (int i = 0; i < buffIcons.Length; i++)
-        {
-            if (buffIcons[i].isActive)
-                continue;
-
-            //buffIcons[i].ShowIcon(effect);
-            return buffIcons[i];
-        }
-
-        if (buffIndex == -1)
-        {
-            //Create new status icon.
-        }
-
-        return null;
-    }
-
-    public void RemoveIconDynamically(StatusEffect effect)
-    {
-        //Get the actual index.
-        int index = 0;
-        if (index < 0 || index > buffIcons.Length)
-            return;
-
-        buffIcons[index].HideIcon();
-    }
+   
 
     public void OnBleed(int damage)
     {
@@ -138,10 +111,4 @@ public class CBTController : MonoBehaviour {
     {
         animator.SetTrigger("Default");
     }
-
-    public void AddStatusIcon(StatusIcon icon)
-    {
-
-    }
-
 }

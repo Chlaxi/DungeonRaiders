@@ -787,7 +787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15.5}
+  m_AnchoredPosition: {x: -2, y: 47.137016}
   m_SizeDelta: {x: 81.74, y: 22.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &148060103
@@ -3368,10 +3368,10 @@ RectTransform:
   m_Father: {fileID: 409293558}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 77.35, y: 36.5}
-  m_SizeDelta: {x: -158.7, y: -77}
+  m_AnchoredPosition: {x: 146.5, y: -22.871002}
+  m_SizeDelta: {x: -297.03967, y: 41.7424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &765709458
 MonoBehaviour:
@@ -3393,10 +3393,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 1
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 5
     m_AlignByGeometry: 0
@@ -3449,8 +3449,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 288, y: -144.99088}
-  m_SizeDelta: {x: 304.94, y: 96.66}
+  m_AnchoredPosition: {x: 288, y: 102.09999}
+  m_SizeDelta: {x: 576, y: 204.2576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &797776909
 MonoBehaviour:
@@ -3489,9 +3489,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797776907}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!95 &797776911
 Animator:
@@ -6740,10 +6740,10 @@ RectTransform:
   m_Father: {fileID: 409293558}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15.5}
-  m_SizeDelta: {x: 83.66, y: 22.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -574, y: -54.863}
+  m_SizeDelta: {x: 83.660034, y: 22.5}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &1472987760
 GameObject:
@@ -6779,8 +6779,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -21.75}
-  m_SizeDelta: {x: -4, y: -44.5}
+  m_AnchoredPosition: {x: 0, y: -37.440002}
+  m_SizeDelta: {x: -4, y: -75.879776}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1472987762
 MonoBehaviour:
@@ -6802,22 +6802,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 1
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 188
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'This spell does some random stuff
-
-    asd
-
-    asd'
+  m_Text: This spell does some random stuff
 --- !u!222 &1472987763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8018,10 +8014,10 @@ RectTransform:
   m_Father: {fileID: 409293558}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2, y: 36.5}
-  m_SizeDelta: {x: -150.24, y: -77}
+  m_AnchoredPosition: {x: 2, y: -22.871002}
+  m_SizeDelta: {x: -312.33508, y: 41.7424}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1721521009
 MonoBehaviour:
@@ -8043,7 +8039,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 1
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
